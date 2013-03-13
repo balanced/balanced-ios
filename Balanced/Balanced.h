@@ -14,7 +14,6 @@
 @interface Balanced : NSObject
 
 + (NSDictionary *)tokenizeCard:(BPCard *)card forMarketplace:(BPMarketplace *)marketplace error:(NSError **)error;
-+ (NSDictionary *)addBankAccount:(BPCard *)card toAccount:(NSString *)accountURI error:(NSError *)error;
 
 + (NSString *)queryStringFromParameters:(NSDictionary *)params;
 + (int)getTimezoneOffset;
