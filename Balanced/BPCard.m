@@ -12,6 +12,10 @@
 @synthesize errors;
 
 - (id)initWithNumber:(NSString *)cardNumber withExperationMonth:(NSString *)expMonth withExperationYear:(NSString *)expYear withSecurityCode:(NSString *)code {
+    return [self initWithNumber:cardNumber withExperationMonth:expMonth withExperationYear:expYear withSecurityCode:code withOptionalFields:NULL];
+}
+
+- (id)initWithNumber:(NSString *)cardNumber withExperationMonth:(NSString *)expMonth withExperationYear:(NSString *)expYear withSecurityCode:(NSString *)code withOptionalFields:(NSDictionary *)optParams {
     self = [super init];
     if (self) {
         number = [cardNumber stringByReplacingOccurrencesOfString:@"\\D"
@@ -33,6 +37,8 @@
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, code.length)];
+
+        optionalFields = optParams;
 
         self.errors = [[NSMutableArray alloc] init];
     }
@@ -126,6 +132,10 @@
 
 - (NSString *)expirationYear {
     return [NSString stringWithFormat:@"%i", expirationYear];
+}
+
+- (NSDictionary *)optionalFields {
+    return optionalFields;
 }
 
 @end

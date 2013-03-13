@@ -19,6 +19,17 @@
     STAssertTrue([[card number] isEqualToString:cardNumber], @"Card number should equal %@", cardNumber);
 }
 
+- (void)testCreateCardWithOptionalFields {
+    NSString *name = @"Lara Croft";
+    NSString *phoneNumber = @"111-222-3333";
+    NSString *cardNumber = @"4242424242424242";
+    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", phoneNumber, @"phone_number", nil];
+    BPCard *card = [[BPCard alloc] initWithNumber:cardNumber withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123" withOptionalFields:optionalFields];
+    STAssertTrue([[card number] isEqualToString:cardNumber], @"Card number should equal %@", cardNumber);
+    STAssertTrue([[[card optionalFields] valueForKey:@"name"] isEqualToString:name], @"Name should be %@", name);
+    STAssertTrue([[[card optionalFields] valueForKey:@"phone_number"] isEqualToString:phoneNumber], @"Phone number should be %@", phoneNumber);
+}
+
 // Test card types
 
 - (void)testVisaCardType {

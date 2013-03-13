@@ -33,14 +33,18 @@
                              [self userAgentString], @"User-Agent", nil];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             [card number], @"card_number",
                             [card expirationMonth], @"expiration_month",
                             [card expirationYear], @"expiration_year",
                             [NSNumber numberWithInt:[self getTimezoneOffset]], @"system_timezone",
                             [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"], @"language",
                             nil];
-    [request setHTTPBody:[[self queryStringFromParameters:params] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+    NSString *requestBody = [self queryStringFromParameters:params];
+    if ([card optionalFields] != NULL && [[card optionalFields] count] > 0) {
+        requestBody = [requestBody stringByAppendingString:[self queryStringFromParameters:[card optionalFields]]];
+    }
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
     
     if (tokenizeError == nil) {

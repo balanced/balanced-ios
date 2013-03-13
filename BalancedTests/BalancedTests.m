@@ -41,4 +41,22 @@
     STAssertNotNil([response valueForKey:@"uri"], @"Card URI should not be nil");
 }
 
+- (void)testTokenizeCardWithCardOptionalFields {
+    BPMarketplace *mp = [[BPMarketplace alloc] initWithURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    NSError *error;
+    NSString *name = @"Lara Croft";
+    NSString *cardNumber = @"4242424242424242";
+    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", nil];
+    BPCard *card = [[BPCard alloc] initWithNumber:cardNumber withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123" withOptionalFields:optionalFields];
+    NSDictionary *response = [Balanced tokenizeCard:card forMarketplace:mp error:&error];
+    
+    if (error != NULL) { STFail(@"Response should not have an error"); }
+
+    STAssertNotNil(response, @"Response should not be nil");
+    STAssertNotNil([response valueForKey:@"uri"], @"Card URI should not be nil");
+    STAssertNotNil([response valueForKey:@"name"], @"Name should not be nil");
+    STAssertTrue([[response valueForKey:@"name"] isEqualToString:name], @"Name should be %@", name);
+}
+
+
 @end

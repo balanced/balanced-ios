@@ -14,17 +14,25 @@
     NSUInteger expirationYear;
     NSString *securityCode;
     NSString *number;
-    
+    NSDictionary *optionalFields;
 }
 
-- (BPCard *)initWithNumber:(NSString *)cardNumber
-       withExperationMonth:(NSString *)expMonth
-        withExperationYear:(NSString *)expYear
-          withSecurityCode:(NSString *)code;
+- (id)initWithNumber:(NSString *)cardNumber
+ withExperationMonth:(NSString *)expMonth
+  withExperationYear:(NSString *)expYear
+    withSecurityCode:(NSString *)code;
+
+- (id)initWithNumber:(NSString *)cardNumber
+ withExperationMonth:(NSString *)expMonth
+  withExperationYear:(NSString *)expYear
+    withSecurityCode:(NSString *)code
+  withOptionalFields:(NSDictionary *)optParams;
+
 - (NSString *)number;
 - (NSString *)expirationMonth;
 - (NSString *)expirationYear;
 - (NSString *)type;
+- (NSDictionary *)optionalFields;
 - (BOOL)valid;
 - (BOOL)numberValid;
 - (BOOL)securityCodeValid;
