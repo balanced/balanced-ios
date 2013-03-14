@@ -22,20 +22,31 @@ Current version : 0.1.1
 
 #### Create a marketplace object
 
-A marketplace card object is required for adding cards.
+Instantiate a balanced instance with your marketplace URI.
 
-    BPMarketplace *mp = [[BPMarketplace alloc] initWithURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
 
 #### Create a card object
 
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123"];
+##### With only required fields
+
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
+
+##### With optional fields
+
+Use an NSDictionary for additional card fields you wish to specify
+
+    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                      @"Johann Bernoulli", @"name",
+                                                      @"111-222-3333", @"phone_number",
+                                                      nil];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
+
 
 #### Tokenize a card
 
-    BPMarketplace *mp = [[BPMarketplace alloc] initWithURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    NSError *error;
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123"];
-    NSDictionary *response = [Balanced tokenizeCard:card forMarketplace:mp error:&error];
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    NSDictionary *response = [balanced tokenizeCard:card error:&error];
     
     if (!error) {
         NSLog(@"%@", response);
@@ -44,10 +55,10 @@ A marketplace card object is required for adding cards.
         NSLog(@"%@", [error description]);
     }
 
-
 ## Contributing
 
 #### Requirements
+
 The balanced-ios project builds a static iOS framework. The ability to create and build such frameworks has disappeared from recent Xcode 4 versions. To restore this functionality, which is required for working on balanced-ios, do the following:
 
     git clone git@github.com:kstenerud/iOS-Universal-Framework.git
