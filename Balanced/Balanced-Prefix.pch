@@ -6,3 +6,5 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
 #endif
+
+#define BALANCED_IOS_VERSION @"0.1.1"
