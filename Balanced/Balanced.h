@@ -3,22 +3,20 @@
 //  Balanced iOS Example
 //
 //  Created by Ben Mills on 3/9/13.
-//  Copyright (c) 2013 Unfiniti. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "BPCard.h"
 #import "BPBankAccount.h"
-#import "BPMarketplace.h"
 
-@interface Balanced : NSObject
+@interface Balanced : NSObject {
+@private
+    NSString *marketplaceURI;
+}
 
-+ (NSDictionary *)tokenizeCard:(BPCard *)card forMarketplace:(BPMarketplace *)marketplace error:(NSError **)error;
+- (id)initWithMarketplaceURI:(NSString *)uri;
 
-+ (NSString *)queryStringFromParameters:(NSDictionary *)params;
-+ (int)getTimezoneOffset;
-+ (NSString *)getMACAddress;
-+ (NSString *)getIPAddress;
-+ (NSString *)userAgentString;
+- (NSDictionary *)tokenizeCard:(BPCard *)card error:(NSError **)error;
+
 
 @end

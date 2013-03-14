@@ -13,10 +13,7 @@
 		8771ECC416F0D0FD009ADDA4 /* BPBankAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECBC16F0D0FD009ADDA4 /* BPBankAccount.m */; };
 		8771ECC516F0D0FD009ADDA4 /* BPCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771ECBD16F0D0FD009ADDA4 /* BPCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8771ECC616F0D0FD009ADDA4 /* BPCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECBE16F0D0FD009ADDA4 /* BPCard.m */; };
-		8771ECC716F0D0FD009ADDA4 /* BPMarketplace.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771ECBF16F0D0FD009ADDA4 /* BPMarketplace.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8771ECC816F0D0FD009ADDA4 /* BPMarketplace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECC016F0D0FD009ADDA4 /* BPMarketplace.m */; };
 		8771ECCD16F0D151009ADDA4 /* BPCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECCA16F0D151009ADDA4 /* BPCardTests.m */; };
-		8771ECCE16F0D151009ADDA4 /* BPMarketplaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECCC16F0D151009ADDA4 /* BPMarketplaceTests.m */; };
 		8771ECD016F0D1F3009ADDA4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8771ECCF16F0D1F3009ADDA4 /* LICENSE */; };
 		8771ECD216F0D2B9009ADDA4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771ECD116F0D2B9009ADDA4 /* CoreTelephony.framework */; };
 		8771ECD316F0D2DB009ADDA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90B16F0C1F00099DD1F /* UIKit.framework */; };
@@ -24,6 +21,9 @@
 		8771ECD616F0E813009ADDA4 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8771ECD516F0E813009ADDA4 /* splash.png */; };
 		8771ECD816F0E8C0009ADDA4 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8771ECD716F0E8C0009ADDA4 /* splash@2x.png */; };
 		8771ECD916F0EA65009ADDA4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771ECD116F0D2B9009ADDA4 /* CoreTelephony.framework */; };
+		8771ECDE16F26254009ADDA4 /* BPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771ECDC16F26254009ADDA4 /* BPUtilities.h */; };
+		8771ECDF16F26254009ADDA4 /* BPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECDD16F26254009ADDA4 /* BPUtilities.m */; };
+		8771ECE216F2667C009ADDA4 /* BPUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */; };
 		8773E90C16F0C1F00099DD1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90B16F0C1F00099DD1F /* UIKit.framework */; };
 		8773E90E16F0C1F00099DD1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90D16F0C1F00099DD1F /* Foundation.framework */; };
 		8773E91016F0C1F00099DD1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90F16F0C1F00099DD1F /* CoreGraphics.framework */; };
@@ -83,16 +83,16 @@
 		8771ECBC16F0D0FD009ADDA4 /* BPBankAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBankAccount.m; sourceTree = "<group>"; };
 		8771ECBD16F0D0FD009ADDA4 /* BPCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCard.h; sourceTree = "<group>"; };
 		8771ECBE16F0D0FD009ADDA4 /* BPCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCard.m; sourceTree = "<group>"; };
-		8771ECBF16F0D0FD009ADDA4 /* BPMarketplace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMarketplace.h; sourceTree = "<group>"; };
-		8771ECC016F0D0FD009ADDA4 /* BPMarketplace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMarketplace.m; sourceTree = "<group>"; };
 		8771ECC916F0D151009ADDA4 /* BPCardTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCardTests.h; sourceTree = "<group>"; };
 		8771ECCA16F0D151009ADDA4 /* BPCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCardTests.m; sourceTree = "<group>"; };
-		8771ECCB16F0D151009ADDA4 /* BPMarketplaceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMarketplaceTests.h; sourceTree = "<group>"; };
-		8771ECCC16F0D151009ADDA4 /* BPMarketplaceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMarketplaceTests.m; sourceTree = "<group>"; };
 		8771ECCF16F0D1F3009ADDA4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8771ECD116F0D2B9009ADDA4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		8771ECD516F0E813009ADDA4 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		8771ECD716F0E8C0009ADDA4 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
+		8771ECDC16F26254009ADDA4 /* BPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUtilities.h; sourceTree = "<group>"; };
+		8771ECDD16F26254009ADDA4 /* BPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUtilities.m; sourceTree = "<group>"; };
+		8771ECE016F2667C009ADDA4 /* BPUtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUtilitiesTests.h; sourceTree = "<group>"; };
+		8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUtilitiesTests.m; sourceTree = "<group>"; };
 		8773E90816F0C1F00099DD1F /* Balanced iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balanced iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8773E90B16F0C1F00099DD1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8773E90D16F0C1F00099DD1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -282,9 +282,9 @@
 				8771ECBC16F0D0FD009ADDA4 /* BPBankAccount.m */,
 				8771ECBD16F0D0FD009ADDA4 /* BPCard.h */,
 				8771ECBE16F0D0FD009ADDA4 /* BPCard.m */,
-				8771ECBF16F0D0FD009ADDA4 /* BPMarketplace.h */,
-				8771ECC016F0D0FD009ADDA4 /* BPMarketplace.m */,
 				87AA193516F0C9C700812C14 /* Supporting Files */,
+				8771ECDC16F26254009ADDA4 /* BPUtilities.h */,
+				8771ECDD16F26254009ADDA4 /* BPUtilities.m */,
 			);
 			path = Balanced;
 			sourceTree = "<group>";
@@ -307,9 +307,9 @@
 				87AA195016F0C9C700812C14 /* BalancedTests.m */,
 				8771ECC916F0D151009ADDA4 /* BPCardTests.h */,
 				8771ECCA16F0D151009ADDA4 /* BPCardTests.m */,
-				8771ECCB16F0D151009ADDA4 /* BPMarketplaceTests.h */,
-				8771ECCC16F0D151009ADDA4 /* BPMarketplaceTests.m */,
 				87AA194A16F0C9C700812C14 /* Supporting Files */,
+				8771ECE016F2667C009ADDA4 /* BPUtilitiesTests.h */,
+				8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */,
 			);
 			path = BalancedTests;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				8771ECC116F0D0FD009ADDA4 /* Balanced.h in Headers */,
 				8771ECC316F0D0FD009ADDA4 /* BPBankAccount.h in Headers */,
 				8771ECC516F0D0FD009ADDA4 /* BPCard.h in Headers */,
-				8771ECC716F0D0FD009ADDA4 /* BPMarketplace.h in Headers */,
+				8771ECDE16F26254009ADDA4 /* BPUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +584,7 @@
 				8771ECC216F0D0FD009ADDA4 /* Balanced.m in Sources */,
 				8771ECC416F0D0FD009ADDA4 /* BPBankAccount.m in Sources */,
 				8771ECC616F0D0FD009ADDA4 /* BPCard.m in Sources */,
-				8771ECC816F0D0FD009ADDA4 /* BPMarketplace.m in Sources */,
+				8771ECDF16F26254009ADDA4 /* BPUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +594,7 @@
 			files = (
 				87AA195116F0C9C700812C14 /* BalancedTests.m in Sources */,
 				8771ECCD16F0D151009ADDA4 /* BPCardTests.m in Sources */,
-				8771ECCE16F0D151009ADDA4 /* BPMarketplaceTests.m in Sources */,
+				8771ECE216F2667C009ADDA4 /* BPUtilitiesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,8 +790,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 0.1.1;
+				DYLIB_CURRENT_VERSION = 0.1.1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
@@ -807,8 +807,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 0.1.1;
+				DYLIB_CURRENT_VERSION = 0.1.1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";

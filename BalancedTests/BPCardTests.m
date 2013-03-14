@@ -1,9 +1,8 @@
 //
-//  BPCard_Test.m
-//  Balanced iOS Example
+//  BPCardTests.m
+//  BalancedTests
 //
 //  Created by Ben Mills on 3/10/13.
-//  Copyright (c) 2013 Unfiniti. All rights reserved.
 //
 
 #import "BPCardTests.h"
@@ -20,7 +19,7 @@
 }
 
 - (void)testCreateCardWithOptionalFields {
-    NSString *name = @"Lara Croft";
+    NSString *name = @"Johann Bernoulli";
     NSString *phoneNumber = @"111-222-3333";
     NSString *cardNumber = @"4242424242424242";
     NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", phoneNumber, @"phone_number", nil];
