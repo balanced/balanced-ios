@@ -1,7 +1,8 @@
 ![balancedlogo](https://www.balancedpayments.com/images/homepage_logo-01.png)
 
 
-balanced-ios. iOS library for working with Balanced Payments.
+iOS library for working with Balanced Payments.
+Current version : 0.1.1
 
 ## Requirements
 
