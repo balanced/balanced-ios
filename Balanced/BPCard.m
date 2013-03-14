@@ -11,11 +11,11 @@
 @implementation BPCard
 @synthesize errors;
 
-- (id)initWithNumber:(NSString *)cardNumber withExperationMonth:(NSString *)expMonth withExperationYear:(NSString *)expYear withSecurityCode:(NSString *)code {
-    return [self initWithNumber:cardNumber withExperationMonth:expMonth withExperationYear:expYear withSecurityCode:code withOptionalFields:NULL];
+- (id)initWithNumber:(NSString *)cardNumber andExperationMonth:(NSString *)expMonth andExperationYear:(NSString *)expYear andSecurityCode:(NSString *)code {
+    return [self initWithNumber:cardNumber andExperationMonth:expMonth andExperationYear:expYear andSecurityCode:code andOptionalFields:NULL];
 }
 
-- (id)initWithNumber:(NSString *)cardNumber withExperationMonth:(NSString *)expMonth withExperationYear:(NSString *)expYear withSecurityCode:(NSString *)code withOptionalFields:(NSDictionary *)optParams {
+- (id)initWithNumber:(NSString *)cardNumber andExperationMonth:(NSString *)expMonth andExperationYear:(NSString *)expYear andSecurityCode:(NSString *)code andOptionalFields:(NSDictionary *)optParams {
     self = [super init];
     if (self) {
         number = [cardNumber stringByReplacingOccurrencesOfString:@"\\D"

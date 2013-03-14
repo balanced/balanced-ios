@@ -18,15 +18,15 @@
 }
 
 - (id)initWithNumber:(NSString *)cardNumber
- withExperationMonth:(NSString *)expMonth
-  withExperationYear:(NSString *)expYear
-    withSecurityCode:(NSString *)code;
+ andExperationMonth:(NSString *)expMonth
+  andExperationYear:(NSString *)expYear
+    andSecurityCode:(NSString *)code;
 
 - (id)initWithNumber:(NSString *)cardNumber
- withExperationMonth:(NSString *)expMonth
-  withExperationYear:(NSString *)expYear
-    withSecurityCode:(NSString *)code
-  withOptionalFields:(NSDictionary *)optParams;
+ andExperationMonth:(NSString *)expMonth
+  andExperationYear:(NSString *)expYear
+    andSecurityCode:(NSString *)code
+  andOptionalFields:(NSDictionary *)optParams;
 
 - (NSString *)number;
 - (NSString *)expirationMonth;

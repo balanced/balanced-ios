@@ -32,7 +32,7 @@
 - (void)testTokenizeCard {
     BPMarketplace *mp = [[BPMarketplace alloc] initWithURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
     NSError *error;
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123"];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
     NSDictionary *response = [Balanced tokenizeCard:card forMarketplace:mp error:&error];
     
     if (error != NULL) { STFail(@"Response should not have an error"); }
@@ -47,7 +47,7 @@
     NSString *name = @"Lara Croft";
     NSString *cardNumber = @"4242424242424242";
     NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", nil];
-    BPCard *card = [[BPCard alloc] initWithNumber:cardNumber withExperationMonth:@"8" withExperationYear:@"2025" withSecurityCode:@"123" withOptionalFields:optionalFields];
+    BPCard *card = [[BPCard alloc] initWithNumber:cardNumber andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
     NSDictionary *response = [Balanced tokenizeCard:card forMarketplace:mp error:&error];
     
     if (error != NULL) { STFail(@"Response should not have an error"); }
