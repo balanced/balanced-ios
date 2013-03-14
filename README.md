@@ -3,6 +3,10 @@
 
 balanced-ios. iOS library for working with Balanced Payments.
 
+## Requirements
+
+- ARC
+- CoreTelephony.framework
 
 ## Installation
 
