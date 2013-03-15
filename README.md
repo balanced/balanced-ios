@@ -34,14 +34,13 @@ Instantiate a balanced instance with your marketplace URI.
 
 ##### With optional fields
 
-Use an NSDictionary for additional card fields you wish to specify
+Use an NSDictionary for additional card fields you wish to specify.
 
     NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:
                                                       @"Johann Bernoulli", @"name",
                                                       @"111-222-3333", @"phone_number",
                                                       nil];
     BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
-
 
 #### Tokenize a card
 
@@ -54,6 +53,22 @@ Use an NSDictionary for additional card fields you wish to specify
     else {
         NSLog(@"%@", [error description]);
     }
+
+#### Create a bank account object
+
+##### With only required fields
+
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
+
+##### With optional fields
+
+Use an NSDictionary for additional card fields you wish to specify.
+
+    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                      @"Testing", @"meta",
+                                                      nil];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"savings" andName:@"Johann Bernoulli" andOptionalFields:optionalFields];
+
 
 ## Contributing
 

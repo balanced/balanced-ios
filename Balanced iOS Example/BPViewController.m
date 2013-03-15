@@ -17,11 +17,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+    
     NSError *error;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
     BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
     NSDictionary *response = [balanced tokenizeCard:card error:&error];
+    
+    if (!error) {
+        NSLog(@"%@", response);
+    }
+    else {
+        NSLog(@"%@", [error description]);
+    }
+    
+    error = NULL;
+    
+    balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
+    response = [balanced tokenizeBankAccount:ba error:&error];
     
     if (!error) {
         NSLog(@"%@", response);
