@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
+__unused static NSString const *BPCardOptionalParamNameKey = @"name";
+__unused static NSString const *BPCardOptionalParamPhoneNumberKey = @"phone_number";
+__unused static NSString const *BPCardOptionalParamPostalCodeKey = @"postal_code";
+
 @interface BPCard : NSObject {
 @private
     NSUInteger expirationMonth;

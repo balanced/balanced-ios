@@ -20,11 +20,11 @@
     return self;
 }
 
-- (NSDictionary *)tokenizeCard:(BPCard *)card error:(NSError **)error {
-    NSError *tokenizeError;
+- (void) tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeCardResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
+{
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/cards", API_URL, marketplaceURI]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSURLResponse *response;
+    __block NSURLResponse *response;
     NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:
                              @"application/json", @"accept",
                              @"application/x-www-form-urlencoded charset=utf-8", @"Content-Type",
@@ -43,21 +43,29 @@
         requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[card optionalFields]]];
     }
     [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
     
-    if (tokenizeError == nil) {
-        NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
+    __block NSError *tokenizeError;
+    __block NSData *responseData;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
-            return responseJSON;
+            NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                if (tokenizeError == nil) {
+                    successBlock(responseJSON);
+                }else
+                {
+                    errorBlock(tokenizeError);
+                }
+            }];
         }
-        *error = tokenizeError;
-        return nil;
-    }
-    else {
-        *error = tokenizeError;
-    }
-    
-    return nil;
+        else {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                errorBlock(tokenizeError);
+            }];
+        }
+    }];
 }
 
 

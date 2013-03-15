@@ -94,27 +94,27 @@
 
 // Test security code
 
-- (void)testValidAmexSecutiryCode {
+- (void)testValidAmexSecurityCode {
     BPCard *card = [[BPCard alloc] initWithNumber:@"341111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"1234"];
     STAssertTrue([card securityCodeValid], @"American Express security code 1234 should be valid");
 }
 
-- (void)testInvalidAmexSecutiryCode {
+- (void)testInvalidAmexSecurityCode {
     BPCard *card = [[BPCard alloc] initWithNumber:@"341111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
     STAssertFalse([card securityCodeValid], @"American Express security code 123 should be invalid");
 }
 
-- (void)testSecutiryCode {
+- (void)testSecurityCode {
     BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
     STAssertTrue([card securityCodeValid], @"Security code should be valid");
 }
 
-- (void)testInvalidSecutiryCodeShort {
+- (void)testInvalidSecurityCodeShort {
     BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"12"];
     STAssertFalse([card securityCodeValid], @"Security code should be 3 digits");
 }
 
-- (void)testInvalidSecutiryCodeLong {
+- (void)testInvalidSecurityCodeLong {
     BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"1234"];
     STAssertFalse([card securityCodeValid], @"Security code should be 3 digits");
 }
