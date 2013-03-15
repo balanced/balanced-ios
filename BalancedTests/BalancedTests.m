@@ -12,6 +12,9 @@
 
 @implementation BalancedTests
 
+
+// Tokenize cards
+
 - (void)testTokenizeCard {
     NSError *error;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
@@ -24,7 +27,7 @@
     STAssertNotNil([response valueForKey:@"uri"], @"Card URI should not be nil");
 }
 
-- (void)testTokenizeCardWithCardOptionalFields {
+- (void)testTokenizeCardWithOptionalFields {
     NSError *error;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
     NSString *name = @"Johann Bernoulli";

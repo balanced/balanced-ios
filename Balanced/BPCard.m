@@ -21,24 +21,19 @@
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, cardNumber.length)];
-
         expirationMonth = [[expMonth stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, expMonth.length)] integerValue];
-        
         expirationYear = [[expYear stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, expYear.length)] integerValue];
-        
         securityCode = [code stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, code.length)];
-
         optionalFields = optParams;
-
         self.errors = [[NSMutableArray alloc] init];
     }
     return self;

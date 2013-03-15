@@ -148,6 +148,12 @@
 
 // Valid test validate
 
+- (void)testValidWithEverythingValid {
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
+    STAssertTrue([card valid], @"Card should be valid");
+    STAssertTrue([[card errors] count] == 0, @"Card error count should be 0");
+}
+
 - (void)testValidWithInvalidCardNumber {
     BPCard *card = [[BPCard alloc] initWithNumber:@"411111111111111112" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
     STAssertFalse([card valid], @"Card should not be valid");
