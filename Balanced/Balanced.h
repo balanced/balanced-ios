@@ -17,6 +17,6 @@
 - (id)initWithMarketplaceURI:(NSString *)uri;
 
 - (NSDictionary *)tokenizeCard:(BPCard *)card error:(NSError **)error;
-
+- (NSDictionary *)tokenizeBankAccount:(BPBankAccount *)bankAccount error:(NSError **)error;
 
 @end

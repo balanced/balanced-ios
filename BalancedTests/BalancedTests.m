@@ -42,4 +42,30 @@
 }
 
 
+// Tokenize bank accounts
+
+- (void)testTokenizeBankAccount {
+    NSError *error;
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
+    NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
+    
+    if (error != NULL) { STFail(@"Response should not have an error"); }
+    
+    STAssertNotNil(response, @"Response should not be nil");
+    STAssertNotNil([response valueForKey:@"uri"], @"Bank account URI should not be nil");
+}
+
+- (void)testTokenizeBankAccountWithOptionalFields {
+    NSError *error;
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
+    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:@"Testing", @"meta", nil];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli" andOptionalFields:optionalFields];
+    NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
+    
+    if (error != NULL) { STFail(@"Response should not have an error"); }
+    
+    STAssertNotNil(response, @"Response should not be nil");
+}
+
 @end

@@ -24,6 +24,7 @@
 		8771ECDE16F26254009ADDA4 /* BPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771ECDC16F26254009ADDA4 /* BPUtilities.h */; };
 		8771ECDF16F26254009ADDA4 /* BPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECDD16F26254009ADDA4 /* BPUtilities.m */; };
 		8771ECE216F2667C009ADDA4 /* BPUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */; };
+		8771ECE716F28AB5009ADDA4 /* BPBankAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8771ECE616F28AB4009ADDA4 /* BPBankAccountTests.m */; };
 		8773E90C16F0C1F00099DD1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90B16F0C1F00099DD1F /* UIKit.framework */; };
 		8773E90E16F0C1F00099DD1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90D16F0C1F00099DD1F /* Foundation.framework */; };
 		8773E91016F0C1F00099DD1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773E90F16F0C1F00099DD1F /* CoreGraphics.framework */; };
@@ -53,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8771ECE316F28349009ADDA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8773E90016F0C1F00099DD1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87AA193116F0C9C700812C14;
+			remoteInfo = Balanced;
+		};
 		8773E93616F0C1F00099DD1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8773E90016F0C1F00099DD1F /* Project object */;
@@ -93,6 +101,8 @@
 		8771ECDD16F26254009ADDA4 /* BPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUtilities.m; sourceTree = "<group>"; };
 		8771ECE016F2667C009ADDA4 /* BPUtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUtilitiesTests.h; sourceTree = "<group>"; };
 		8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUtilitiesTests.m; sourceTree = "<group>"; };
+		8771ECE516F28AB4009ADDA4 /* BPBankAccountTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBankAccountTests.h; sourceTree = "<group>"; };
+		8771ECE616F28AB4009ADDA4 /* BPBankAccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBankAccountTests.m; sourceTree = "<group>"; };
 		8773E90816F0C1F00099DD1F /* Balanced iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balanced iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8773E90B16F0C1F00099DD1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8773E90D16F0C1F00099DD1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -307,9 +317,11 @@
 				87AA195016F0C9C700812C14 /* BalancedTests.m */,
 				8771ECC916F0D151009ADDA4 /* BPCardTests.h */,
 				8771ECCA16F0D151009ADDA4 /* BPCardTests.m */,
-				87AA194A16F0C9C700812C14 /* Supporting Files */,
 				8771ECE016F2667C009ADDA4 /* BPUtilitiesTests.h */,
 				8771ECE116F2667C009ADDA4 /* BPUtilitiesTests.m */,
+				87AA194A16F0C9C700812C14 /* Supporting Files */,
+				8771ECE516F28AB4009ADDA4 /* BPBankAccountTests.h */,
+				8771ECE616F28AB4009ADDA4 /* BPBankAccountTests.m */,
 			);
 			path = BalancedTests;
 			sourceTree = "<group>";
@@ -351,6 +363,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8771ECE416F28349009ADDA4 /* PBXTargetDependency */,
 			);
 			name = "Balanced iOS Example";
 			productName = "Balanced iOS Example";
@@ -595,12 +608,18 @@
 				87AA195116F0C9C700812C14 /* BalancedTests.m in Sources */,
 				8771ECCD16F0D151009ADDA4 /* BPCardTests.m in Sources */,
 				8771ECE216F2667C009ADDA4 /* BPUtilitiesTests.m in Sources */,
+				8771ECE716F28AB5009ADDA4 /* BPBankAccountTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8771ECE416F28349009ADDA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87AA193116F0C9C700812C14 /* Balanced */;
+			targetProxy = 8771ECE316F28349009ADDA4 /* PBXContainerItemProxy */;
+		};
 		8773E93716F0C1F00099DD1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8773E90716F0C1F00099DD1F /* Balanced iOS Example */;
