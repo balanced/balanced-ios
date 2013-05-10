@@ -31,13 +31,17 @@
                              [BPUtilities userAgentString], @"User-Agent", nil];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
-    NSMutableDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             [card number], @"card_number",
                             [card expirationMonth], @"expiration_month",
                             [card expirationYear], @"expiration_year",
                             [NSNumber numberWithInt:[BPUtilities getTimezoneOffset]], @"system_timezone",
                             [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"], @"language",
                             nil];
+    if(card.securityCode!=nil)
+    {
+        [params setValue:card.securityCode forKey:@"security_code"];
+    }
     NSString *requestBody = [BPUtilities queryStringFromParameters:params];
     if ([card optionalFields] != NULL && [[card optionalFields] count] > 0) {
         requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[card optionalFields]]];

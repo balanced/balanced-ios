@@ -29,7 +29,7 @@
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, expYear.length)] integerValue];
-        securityCode = [code stringByReplacingOccurrencesOfString:@"\\D"
+        self.securityCode = [code stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, code.length)];
@@ -55,14 +55,14 @@
 }
 
 - (BOOL)securityCodeValid {
-    if (securityCode == nil) { return false; }
+    if (self.securityCode == nil) { return false; }
     
     NSString *cardType = [self type];
     if ([cardType isEqualToString:@"Unknown"]) { return false; }
     
     NSUInteger requiredLength = [cardType isEqualToString:@"American Express"] ? 4 : 3;
     
-    return [securityCode length] == requiredLength;
+    return [self.securityCode length] == requiredLength;
 }
 
 - (BOOL)expired {

@@ -15,7 +15,7 @@ __unused static NSString const *BPCardOptionalParamPostalCodeKey = @"postal_code
 @private
     NSUInteger expirationMonth;
     NSUInteger expirationYear;
-    NSString *securityCode;
+    //NSString *securityCode;
     NSString *number;
     NSDictionary *optionalFields;
 }
@@ -41,6 +41,7 @@ __unused static NSString const *BPCardOptionalParamPostalCodeKey = @"postal_code
 - (BOOL)securityCodeValid;
 - (BOOL)expired;
 
+@property (nonatomic, strong) NSString *securityCode;
 @property (nonatomic, strong) NSMutableArray *errors;
 
 @end
