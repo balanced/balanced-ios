@@ -18,7 +18,7 @@
 - (void)testTokenizeCard {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     __block NSDictionary *response;
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
     [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
         response = responseParams;
@@ -42,7 +42,7 @@
     NSDictionary *optionalFields = @{
                                      BPCardOptionalParamNameKey:@"Johann Bernoulli",
                                      };
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:123 optionalFields:optionalFields];
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
     [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
         response = responseParams;

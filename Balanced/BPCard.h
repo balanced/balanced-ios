@@ -11,37 +11,39 @@ __unused static NSString const *BPCardOptionalParamNameKey = @"name";
 __unused static NSString const *BPCardOptionalParamPhoneNumberKey = @"phone_number";
 __unused static NSString const *BPCardOptionalParamPostalCodeKey = @"postal_code";
 
-@interface BPCard : NSObject {
-@private
-    NSUInteger expirationMonth;
-    NSUInteger expirationYear;
-    //NSString *securityCode;
-    NSString *number;
-    NSDictionary *optionalFields;
-}
+
+typedef NS_ENUM(NSUInteger, BPCardType)
+{
+    BPCardTypeUnknown,
+    BPCardTypeVisa,
+    BPCardTypeMastercard,
+    BPCardTypeAmericanExpress,
+    BPCardTypeDiscover
+};
+
+@interface BPCard : NSObject
 
 - (id)initWithNumber:(NSString *)cardNumber
- andExperationMonth:(NSString *)expMonth
-  andExperationYear:(NSString *)expYear
-    andSecurityCode:(NSString *)code;
+ expirationMonth:(NSUInteger)expirationMonth
+  expirationYear:(NSUInteger)expirationYear
+    securityCode:(NSUInteger)securityCode;
 
 - (id)initWithNumber:(NSString *)cardNumber
- andExperationMonth:(NSString *)expMonth
-  andExperationYear:(NSString *)expYear
-    andSecurityCode:(NSString *)code
-  andOptionalFields:(NSDictionary *)optParams;
+ expirationMonth:(NSUInteger)expirationMonth
+  expirationYear:(NSUInteger)expirationYear
+    securityCode:(NSUInteger)securityCode
+  optionalFields:(NSDictionary *)optionalFields;
 
-- (NSString *)number;
-- (NSString *)expirationMonth;
-- (NSString *)expirationYear;
-- (NSString *)type;
-- (NSDictionary *)optionalFields;
-- (BOOL)valid;
-- (BOOL)numberValid;
-- (BOOL)securityCodeValid;
-- (BOOL)expired;
-
-@property (nonatomic, strong) NSString *securityCode;
+@property (nonatomic, assign, readonly, getter=getType) BPCardType type;
+@property (nonatomic, assign, readonly, getter=getValid) BOOL valid;
+@property (nonatomic, assign, readonly, getter=getNumberValid) BOOL numberValid;
+@property (nonatomic, assign, readonly, getter=getSecurityCodeValid) BOOL securityCodeValid;
+@property (nonatomic, assign, readonly, getter=getExpired) BOOL expired;
+@property (nonatomic, assign) NSUInteger expirationMonth;
+@property (nonatomic, assign) NSUInteger expirationYear;
+@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSDictionary *optionalFields;
+@property (nonatomic, assign) NSUInteger securityCode;
 @property (nonatomic, strong) NSMutableArray *errors;
 
 @end

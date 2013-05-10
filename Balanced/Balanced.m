@@ -32,15 +32,15 @@
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            [card number], @"card_number",
-                            [card expirationMonth], @"expiration_month",
-                            [card expirationYear], @"expiration_year",
+                            card.number, @"card_number",
+                            [NSString stringWithFormat:@"%i",card.expirationMonth], @"expiration_month",
+                            [NSString stringWithFormat:@"%i",card.expirationYear], @"expiration_year",
                             [NSNumber numberWithInt:[BPUtilities getTimezoneOffset]], @"system_timezone",
                             [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"], @"language",
                             nil];
-    if(card.securityCode!=nil)
+    if(card.securityCode!=0)
     {
-        [params setValue:card.securityCode forKey:@"security_code"];
+        [params setValue:[NSNumber numberWithInt:card.securityCode] forKey:@"security_code"];
     }
     NSString *requestBody = [BPUtilities queryStringFromParameters:params];
     if ([card optionalFields] != NULL && [[card optionalFields] count] > 0) {
