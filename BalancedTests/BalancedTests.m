@@ -69,7 +69,7 @@
 - (void)testTokenizeBankAccount {
     NSError *error;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:111111111111 accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli"];
     NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
     
     if (error != NULL) { STFail(@"Response should not have an error"); }
@@ -82,7 +82,7 @@
     NSError *error;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
     NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:@"Testing", @"meta", nil];
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli" andOptionalFields:optionalFields];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:111111111111 accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli" optionalFields:optionalFields];
     NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
     
     if (error != NULL) { STFail(@"Response should not have an error"); }
