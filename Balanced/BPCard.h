@@ -8,9 +8,13 @@
 #import <Foundation/Foundation.h>
 
 __unused static NSString const *BPCardOptionalParamNameKey = @"name";
+__unused static NSString const *BPCardOptionalParamStreetAddressKey = @"street_address";
 __unused static NSString const *BPCardOptionalParamPhoneNumberKey = @"phone_number";
 __unused static NSString const *BPCardOptionalParamPostalCodeKey = @"postal_code";
-
+__unused static NSString const *BPCardOptionalParamCityKey = @"city";
+__unused static NSString const *BPCardOptionalParamCountryCodeKey = @"country_code";
+__unused static NSString const *BPCardOptionalParamMetaKey = @"meta";
+__unused static NSString const *BPCardOptionalParamStateKey = @"state";
 
 typedef NS_ENUM(NSUInteger, BPCardType)
 {

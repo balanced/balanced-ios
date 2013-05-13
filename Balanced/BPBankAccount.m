@@ -27,15 +27,13 @@
 }
 
 - (BOOL) getRoutingNumberValid {
-    if (routingNumber == 0) { return false; }
+    if (self.routingNumber==nil) { return false; }
     
-    NSString *routingNumberString = [NSString stringWithFormat:@"%i",self.routingNumber];
+    if (self.routingNumber.length != 9) { return false; }
     
-    if (routingNumberString.length != 9) { return false; }
-    
-    NSMutableArray *digits = [[NSMutableArray alloc] initWithCapacity:routingNumberString.length];
-    for (int i = 0; i < routingNumberString.length; i++) {
-        [digits addObject:[NSNumber numberWithInt:[[routingNumberString substringWithRange:NSMakeRange(i, 1)] intValue]]];
+    NSMutableArray *digits = [[NSMutableArray alloc] initWithCapacity:self.routingNumber.length];
+    for (int i = 0; i < self.routingNumber.length; i++) {
+        [digits addObject:[NSNumber numberWithInt:[[self.routingNumber substringWithRange:NSMakeRange(i, 1)] intValue]]];
     }
     
     return (7 * ([digits[0] intValue] + [digits[3] intValue] + [digits[6] intValue]) +

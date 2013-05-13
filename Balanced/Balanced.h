@@ -16,16 +16,11 @@ __unused static NSString *BalancedResponseIdKey = @"id";
 __unused static NSString *BalancedResponseIsValidKey = @"is_valid";
 __unused static NSString *BalancedResponseUriKey = @"uri";
 
-typedef void (^BalancedTokenizeCardResponseBlock)(NSDictionary *responseParams);
+typedef void (^BalancedTokenizeResponseBlock)(NSDictionary *responseParams);
 typedef void (^BalancedErrorBlock)(NSError *error);
 
-@interface Balanced : NSObject {
-@private
-    NSString *marketplaceURI;
-}
-
-- (id)initWithMarketplaceURI:(NSString *)uri;
-- (void) tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeCardResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
-- (NSDictionary *)tokenizeBankAccount:(BPBankAccount *)bankAccount error:(NSError **)error;
-
+@interface Balanced : NSObject
+- (id) initWithMarketplaceURI:(NSString *)uri;
+- (void) tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
+- (void) tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
 @end
