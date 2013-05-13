@@ -40,7 +40,7 @@
                             @"card_number":card.number,
                             @"expiration_month":[NSString stringWithFormat:@"%i",card.expirationMonth],
                             @"expiration_year":[NSString stringWithFormat:@"%i",card.expirationYear],
-                            @"security_code":[NSNumber numberWithInt:card.securityCode],
+                            @"security_code":card.securityCode,
                             @"system_timezone":[NSNumber numberWithInt:[BPUtilities getTimezoneOffset]],
                             @"language":[[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
                              };

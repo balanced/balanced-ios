@@ -30,12 +30,12 @@ typedef NS_ENUM(NSUInteger, BPCardType)
 - (id)initWithNumber:(NSString *)cardNumber
  expirationMonth:(NSUInteger)expirationMonth
   expirationYear:(NSUInteger)expirationYear
-    securityCode:(NSUInteger)securityCode;
+    securityCode:(NSString *)securityCode;
 
 - (id)initWithNumber:(NSString *)cardNumber
  expirationMonth:(NSUInteger)expirationMonth
   expirationYear:(NSUInteger)expirationYear
-    securityCode:(NSUInteger)securityCode
+    securityCode:(NSString *)securityCode
   optionalFields:(NSDictionary *)optionalFields;
 
 @property (nonatomic, assign, readonly, getter=getType) BPCardType type;
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, BPCardType)
 @property (nonatomic, assign) NSUInteger expirationYear;
 @property (nonatomic, strong) NSString *number;
 @property (nonatomic, strong) NSDictionary *optionalFields;
-@property (nonatomic, assign) NSUInteger securityCode;
+@property (nonatomic, strong) NSString *securityCode;
 @property (nonatomic, strong) NSMutableArray *errors;
 
 @end

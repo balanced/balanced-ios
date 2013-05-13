@@ -10,12 +10,12 @@
 @implementation BPCard
 @synthesize errors;
 
-- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSUInteger)securityCode
+- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode
 {
     return [self initWithNumber:cardNumber expirationMonth:expirationMonth expirationYear:expirationYear securityCode:securityCode optionalFields:nil];
 }
 
-- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSUInteger)securityCode optionalFields:(NSDictionary *)optionalFields
+- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode optionalFields:(NSDictionary *)optionalFields
 {
     self = [super init];
     if (self) {
@@ -51,8 +51,7 @@
     if (self.securityCode==0) { return false; }
     if (self.type==BPCardTypeUnknown) { return false; }
     NSUInteger requiredLength = (self.type==BPCardTypeAmericanExpress) ? 4 : 3;
-    NSString *securityCodeString = [NSString stringWithFormat:@"%i",self.securityCode];
-    return [securityCodeString length] == requiredLength;
+    return [self.securityCode length] == requiredLength;
 }
 
 - (BOOL)getExpired {
