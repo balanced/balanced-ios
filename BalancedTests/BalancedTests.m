@@ -12,62 +12,109 @@
 
 @implementation BalancedTests
 
-
-// Tokenize cards
-
-- (void)testTokenizeCard {
-    NSError *error;
-    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
-    NSDictionary *response = [balanced tokenizeCard:card error:&error];
+- (void)testTokenizeCard
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    __block NSDictionary *response;
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
+    [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
+        response = responseParams;
+        dispatch_semaphore_signal(semaphore);
+    } onError:^(NSError *error) {
+        dispatch_semaphore_signal(semaphore);
+    }];
     
-    if (error != NULL) { STFail(@"Response should not have an error"); }
+    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
     
     STAssertNotNil(response, @"Response should not be nil");
     STAssertNotNil([response valueForKey:@"uri"], @"Card URI should not be nil");
 }
 
-- (void)testTokenizeCardWithOptionalFields {
-    NSError *error;
-    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    NSString *name = @"Johann Bernoulli";
-    NSString *cardNumber = @"4242424242424242";
-    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", nil];
-    BPCard *card = [[BPCard alloc] initWithNumber:cardNumber andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
-    NSDictionary *response = [balanced tokenizeCard:card error:&error];
+- (void)testTokenizeCardWithOptionalFields
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    __block NSDictionary *response;
+    __block NSError *tokenizeError;
+    NSDictionary *optionalFields = @{
+                                     BPCardOptionalParamNameKey:@"Johann Bernoulli",
+                                     BPCardOptionalParamStreetAddressKey:@"123 Main Street",
+                                     BPCardOptionalParamPostalCodeKey:@"11111"
+                                     };
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123" optionalFields:optionalFields];
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
+    [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
+        response = responseParams;
+        dispatch_semaphore_signal(semaphore);
+    } onError:^(NSError *error) {
+        tokenizeError = error;
+        dispatch_semaphore_signal(semaphore);
+    }];
     
-    if (error != NULL) { STFail(@"Response should not have an error"); }
-
+    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    
+    STAssertNil(tokenizeError, @"response should not have error");
     STAssertNotNil(response, @"Response should not be nil");
     STAssertNotNil([response valueForKey:@"uri"], @"Card URI should not be nil");
     STAssertNotNil([response valueForKey:@"name"], @"Name should not be nil");
-    STAssertTrue([[response valueForKey:@"name"] isEqualToString:name], @"Name should be %@", name);
+    STAssertTrue([[response valueForKey:@"name"] isEqualToString:[optionalFields objectForKey:@"name"]], @"Name should be %@", [optionalFields objectForKey:@"name"]);
+    //TODO: according to Balance's API docs, street_address is required when optional fields are also submitted
 }
 
 
 // Tokenize bank accounts
 
-- (void)testTokenizeBankAccount {
-    NSError *error;
+- (void)testTokenizeBankAccount
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
-    NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
-    
-    if (error != NULL) { STFail(@"Response should not have an error"); }
-    
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli"];
+    __block NSDictionary *response;
+    __block NSError *tokenizeError;
+    [balanced tokenizeBankAccount:ba onSuccess:^(NSDictionary *responseParams) {
+        response = responseParams;
+        dispatch_semaphore_signal(semaphore);
+    } onError:^(NSError *error) {
+        tokenizeError = error;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    STAssertNil(tokenizeError, @"response should not have error");
     STAssertNotNil(response, @"Response should not be nil");
     STAssertNotNil([response valueForKey:@"uri"], @"Bank account URI should not be nil");
 }
 
-- (void)testTokenizeBankAccountWithOptionalFields {
-    NSError *error;
+- (void)testTokenizeBankAccountWithOptionalFields
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    __block NSDictionary *response;
+    __block NSError *tokenizeError;
     Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:@"Testing", @"meta", nil];
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli" andOptionalFields:optionalFields];
-    NSDictionary *response = [balanced tokenizeBankAccount:ba error:&error];
-    
-    if (error != NULL) { STFail(@"Response should not have an error"); }
-    
+    NSDictionary *optionalFields = @{};
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli" optionalFields:optionalFields];
+    [balanced tokenizeBankAccount:ba onSuccess:^(NSDictionary *responseParams) {
+        response = responseParams;
+        dispatch_semaphore_signal(semaphore);
+    } onError:^(NSError *error) {
+        tokenizeError = error;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    }
+    STAssertNil(tokenizeError, @"response should not have error");
+    STAssertNotNil(response, @"Response should not be nil");
+    STAssertNotNil([response valueForKey:@"uri"], @"Bank account URI should not be nil");
     STAssertNotNil(response, @"Response should not be nil");
 }
 

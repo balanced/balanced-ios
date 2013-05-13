@@ -30,44 +30,41 @@ Instantiate a balanced instance with your marketplace URI.
 
 ##### With only required fields
 
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123"];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
 
 ##### With optional fields
 
 Use an NSDictionary for additional card fields you wish to specify.
 
-    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                      @"Johann Bernoulli", @"name",
-                                                      @"111-222-3333", @"phone_number",
-                                                      nil];
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4111111111111111" andExperationMonth:@"8" andExperationYear:@"2025" andSecurityCode:@"123" andOptionalFields:optionalFields];
+    NSDictionary *optionalFields = @{
+                                     BPCardOptionalParamNameKey:@"Johann Bernoulli",
+                                     BPCardOptionalParamStreetAddressKey:@"123 Main Street",
+                                     BPCardOptionalParamPostalCodeKey:@"11111"
+                                     };
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123" optionalFields:optionalFields];
 
 #### Tokenize a card
 
-    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2autgNHAZxRWZs76RriOze"];
-    NSDictionary *response = [balanced tokenizeCard:card error:&error];
-    
-    if (!error) {
-        NSLog(@"%@", response);
-    }
-    else {
-        NSLog(@"%@", [error description]);
-    }
+    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
+    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
+    [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
+
+    } onError:^(NSError *error) {
+
+    }];
 
 #### Create a bank account object
 
 ##### With only required fields
 
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"checking" andName:@"Johann Bernoulli"];
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli"];
 
 ##### With optional fields
 
 Use an NSDictionary for additional card fields you wish to specify.
 
-    NSDictionary *optionalFields = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                      @"Testing", @"meta",
-                                                      nil];
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" andAccountNumber:@"111111111111" andAccountType:@"savings" andName:@"Johann Bernoulli" andOptionalFields:optionalFields];
+	NSDictionary *optionalFields = @{BPCardOptionalParamMetaKey:@"Test"};
+    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli" optionalFields:optionalFields];
 
 
 ## Contributing

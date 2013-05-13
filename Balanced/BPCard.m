@@ -10,85 +10,74 @@
 @implementation BPCard
 @synthesize errors;
 
-- (id)initWithNumber:(NSString *)cardNumber andExperationMonth:(NSString *)expMonth andExperationYear:(NSString *)expYear andSecurityCode:(NSString *)code {
-    return [self initWithNumber:cardNumber andExperationMonth:expMonth andExperationYear:expYear andSecurityCode:code andOptionalFields:NULL];
+- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode
+{
+    return [self initWithNumber:cardNumber expirationMonth:expirationMonth expirationYear:expirationYear securityCode:securityCode optionalFields:nil];
 }
 
-- (id)initWithNumber:(NSString *)cardNumber andExperationMonth:(NSString *)expMonth andExperationYear:(NSString *)expYear andSecurityCode:(NSString *)code andOptionalFields:(NSDictionary *)optParams {
+- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode optionalFields:(NSDictionary *)optionalFields
+{
     self = [super init];
     if (self) {
-        number = [cardNumber stringByReplacingOccurrencesOfString:@"\\D"
+        [self setNumber:[cardNumber stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, cardNumber.length)];
-        expirationMonth = [[expMonth stringByReplacingOccurrencesOfString:@"\\D"
-                                                       withString:@""
-                                                          options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, expMonth.length)] integerValue];
-        expirationYear = [[expYear stringByReplacingOccurrencesOfString:@"\\D"
-                                                       withString:@""
-                                                          options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, expYear.length)] integerValue];
-        securityCode = [code stringByReplacingOccurrencesOfString:@"\\D"
-                                                       withString:@""
-                                                          options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, code.length)];
-        optionalFields = optParams;
+                                                                   range:NSMakeRange(0, cardNumber.length)]];
+        [self setExpirationMonth:expirationMonth];
+        [self setExpirationYear:expirationYear];
+        [self setSecurityCode:securityCode];
+        [self setOptionalFields:[NSDictionary dictionaryWithDictionary:optionalFields]];
         self.errors = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (BOOL)numberValid {
-    if (number == nil) { return false; }
-    if ([number length] < 12) { return false; }
+- (BOOL)getNumberValid {
+    if (self.number == nil) { return false; }
+    if ([self.number length] < 12) { return false; }
     
     BOOL odd = true;
     int total = 0;
     
-    for (int i = number.length - 1; i >= 0; i--) {
-        int value = [[number substringWithRange:NSMakeRange(i, 1)] intValue];
+    for (int i = self.number.length - 1; i >= 0; i--) {
+        int value = [[self.number substringWithRange:NSMakeRange(i, 1)] intValue];
         total += (odd = !odd) ? 2 * value - (value > 4 ? 9 : 0) : value;
     }
 
     return (total % 10) == 0;
 }
 
-- (BOOL)securityCodeValid {
-    if (securityCode == nil) { return false; }
-    
-    NSString *cardType = [self type];
-    if ([cardType isEqualToString:@"Unknown"]) { return false; }
-    
-    NSUInteger requiredLength = [cardType isEqualToString:@"American Express"] ? 4 : 3;
-    
-    return [securityCode length] == requiredLength;
+- (BOOL)getSecurityCodeValid {
+    if (self.securityCode==0) { return false; }
+    if (self.type==BPCardTypeUnknown) { return false; }
+    NSUInteger requiredLength = (self.type==BPCardTypeAmericanExpress) ? 4 : 3;
+    return [self.securityCode length] == requiredLength;
 }
 
-- (BOOL)expired {
-    if (expirationMonth > 12 || expirationYear < 1) { return false; }
+- (BOOL)getExpired {
+    if (self.expirationMonth > 12 || self.expirationYear < 1) { return false; }
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSInteger currentMonth = [components month];
     NSInteger currentYear = [components year];
     
-    return currentYear > expirationYear || (currentYear == expirationYear && currentMonth >= expirationMonth);
+    return currentYear > self.expirationYear || (currentYear == self.expirationYear && currentMonth >= self.expirationMonth);
 }
 
-- (BOOL)valid {
+- (BOOL) getValid {
     BOOL valid = true;
     
-    if (![self numberValid]) {
+    if (!self.numberValid) {
         [errors addObject:@"Card number is not valid"];
         valid = false;
     }
     
-    if ([self expired]) {
+    if (self.expired) {
         [errors addObject:@"Card is expired"];
         valid = false;
     }
     
-    if (![self securityCodeValid]) {
+    if (!self.securityCodeValid) {
         [errors addObject:@"Security code is not valid"];
         valid = false;
     }
@@ -96,40 +85,25 @@
     return valid;
 }
 
-- (NSString *)type {
-    int digits = [[number substringWithRange:NSMakeRange(0, 2)] integerValue];
+- (BPCardType) getType
+{
+    int digits = [[self.number substringWithRange:NSMakeRange(0, 2)] integerValue];
     
     if (digits >= 40 && digits <= 49) {
-        return @"VISA";
+        return BPCardTypeVisa;
     }
     else if (digits >= 50 && digits <= 59) {
-        return @"Mastercard";
+        return BPCardTypeMastercard;
     }
     else if (digits == 60 || digits == 62 || digits == 64 || digits == 65) {
-        return @"Discover Card";
+        return BPCardTypeDiscover;
     }
     else if (digits == 34 || digits == 37) {
-        return @"American Express";
+        return BPCardTypeAmericanExpress;
     }
     else {
-        return @"Unknown";
+        return BPCardTypeUnknown;
     }
-}
-
-- (NSString *)number {
-    return number;
-}
-
-- (NSString *)expirationMonth {
-    return [NSString stringWithFormat:@"%i", expirationMonth];
-}
-
-- (NSString *)expirationYear {
-    return [NSString stringWithFormat:@"%i", expirationYear];
-}
-
-- (NSDictionary *)optionalFields {
-    return optionalFields;
 }
 
 @end
