@@ -2,7 +2,7 @@
 
 
 iOS library for working with Balanced Payments.
-Current version : 0.1.1
+Current version : 0.2.1
 
 ## Requirements
 
