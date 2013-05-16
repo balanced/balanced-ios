@@ -7,27 +7,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BPBankAccount : NSObject {
-@private
-    NSString *routingNumber;
-    NSString *accountNumber;
-    NSString *accountType;
-    NSString *name;
-    NSDictionary *optionalFields;
-}
+@interface BPBankAccount : NSObject
 
-- (id)initWithRoutingNumber:(NSString *)routingNum andAccountNumber:(NSString *)acctNum andAccountType:(NSString *)acctType andName:(NSString *)acctName;
-- (id)initWithRoutingNumber:(NSString *)routingNum andAccountNumber:(NSString *)acctNum andAccountType:(NSString *)acctType andName:(NSString *)acctName andOptionalFields:(NSDictionary *)optParams;
-- (BOOL)routingNumberValid;
-- (BOOL)accountTypeValid;
-- (BOOL)nameValid;
-- (BOOL)valid;
-- (NSString *)routingNumber;
-- (NSString *)accountNumber;
-- (NSString *)accountType;
-- (NSString *)name;
-- (NSDictionary *)optionalFields;
+typedef NS_ENUM(NSUInteger, BPBankAccountType)
+{
+    BPBankAccountTypeUnknown,
+    BPBankAccountTypeChecking,
+    BPBankAccountTypeSavings
+};
 
+- (id)initWithRoutingNumber:(NSString *)routingNumber accountNumber:(NSString *)accountNumber accountType:(BPBankAccountType)accountType name:(NSString *)name;
+- (id)initWithRoutingNumber:(NSString *)routingNumber accountNumber:(NSString *)accountNumber accountType:(BPBankAccountType)accountType name:(NSString *)name optionalFields:(NSDictionary *)optionalFields;
+
+@property (nonatomic, assign, readonly, getter=getRoutingNumberValid) BOOL routingNumberValid;
+@property (nonatomic, assign, readonly, getter=getAccountTypeValid) BOOL accountTypeValid;
+@property (nonatomic, assign, readonly, getter=getNameValid) BOOL nameValid;
+@property (nonatomic, assign, readonly, getter=getValid) BOOL valid;
+@property (nonatomic, assign) BPBankAccountType accountType;
+@property (nonatomic, strong) NSString *routingNumber;
+@property (nonatomic, strong) NSString *accountNumber;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *errors;
+@property (nonatomic, strong) NSDictionary *optionalFields;
 
 @end
