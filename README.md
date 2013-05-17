@@ -1,6 +1,6 @@
 ![balancedlogo](https://www.balancedpayments.com/images/homepage_logo-01.png)
 
-[![Build Status](https://travis-ci.org/balanced/balanced-ios.png)](https://travis-ci.org/balanced/balanced-ios)
+[![Build Status](https://travis-ci.org/balanced/balanced-ios.png?branch=staticlib)](https://travis-ci.org/balanced/balanced-ios)
 
 iOS library for working with Balanced Payments.
 Current version : 0.3
