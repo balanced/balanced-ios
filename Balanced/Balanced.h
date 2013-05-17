@@ -19,8 +19,8 @@ __unused static NSString *BalancedResponseUriKey = @"uri";
 typedef void (^BalancedTokenizeResponseBlock)(NSDictionary *responseParams);
 typedef void (^BalancedErrorBlock)(NSError *error);
 
-@interface Balanced : NSObject
-- (id) initWithMarketplaceURI:(NSString *)uri;
-- (void) tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
-- (void) tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
+@interface Balanced : NSObject <NSURLConnectionDelegate>
+- (id)initWithMarketplaceURI:(NSString *)uri;
+- (void)tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
+- (void)tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock;
 @end

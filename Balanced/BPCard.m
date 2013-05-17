@@ -64,7 +64,7 @@
     return currentYear > self.expirationYear || (currentYear == self.expirationYear && currentMonth >= self.expirationMonth);
 }
 
-- (BOOL) getValid {
+- (BOOL)getValid {
     BOOL valid = true;
     
     if (!self.numberValid) {
@@ -85,7 +85,7 @@
     return valid;
 }
 
-- (BPCardType) getType
+- (BPCardType)getType
 {
     int digits = [[self.number substringWithRange:NSMakeRange(0, 2)] integerValue];
     

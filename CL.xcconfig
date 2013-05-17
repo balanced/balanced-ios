@@ -1,0 +1,10 @@
+//
+//  CL.xcconfig
+//  Balanced
+//
+//  Created by Ben Mills on 5/17/13.
+//
+
+//#define CL 0
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) CL=1

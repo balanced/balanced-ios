@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8773E90716F0C1F00099DD1F"
-               BuildableName = "Balanced iOS Example.app"
-               BlueprintName = "Balanced iOS Example"
+               BlueprintIdentifier = "87BD30CC1745C18B0099FF6C"
+               BuildableName = "BalancedTests.octest"
+               BlueprintName = "BalancedTests"
                ReferencedContainer = "container:Balanced.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,47 +26,29 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8773E93016F0C1F00099DD1F"
-               BuildableName = "Balanced iOS ExampleTests.octest"
-               BlueprintName = "Balanced iOS ExampleTests"
+               BlueprintIdentifier = "87BD30CC1745C18B0099FF6C"
+               BuildableName = "BalancedTests.octest"
+               BlueprintName = "BalancedTests"
                ReferencedContainer = "container:Balanced.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8773E90716F0C1F00099DD1F"
-            BuildableName = "Balanced iOS Example.app"
-            BlueprintName = "Balanced iOS Example"
-            ReferencedContainer = "container:Balanced.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8773E90716F0C1F00099DD1F"
-            BuildableName = "Balanced iOS Example.app"
-            BlueprintName = "Balanced iOS Example"
-            ReferencedContainer = "container:Balanced.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -76,15 +58,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8773E90716F0C1F00099DD1F"
-            BuildableName = "Balanced iOS Example.app"
-            BlueprintName = "Balanced iOS Example"
-            ReferencedContainer = "container:Balanced.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

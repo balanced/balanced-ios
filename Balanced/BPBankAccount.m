@@ -26,7 +26,7 @@
     return self;
 }
 
-- (BOOL) getRoutingNumberValid {
+- (BOOL)getRoutingNumberValid {
     if (self.routingNumber==nil) { return false; }
     
     if (self.routingNumber.length != 9) { return false; }
@@ -42,15 +42,15 @@
             ) % 10;
 }
 
-- (BOOL) getAccountTypeValid {
+- (BOOL)getAccountTypeValid {
     return (self.accountType==BPBankAccountTypeChecking || self.accountType==BPBankAccountTypeSavings);
 }
 
-- (BOOL) getNameValid {
+- (BOOL)getNameValid {
     return self.name.length > 0;
 }
 
-- (BOOL) getValid {
+- (BOOL)getValid {
     BOOL valid = true;
     
     if (!self.routingNumberValid) {

@@ -10,9 +10,17 @@
 
 #define API_URL @"https://js.balancedpayments.com"
 
+#if CL
+@interface NSURLRequest (DummyInterface)
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host;
++ (void)setAllowsAnyHTTPSCertificate:(BOOL)allow forHost:(NSString*)host;
+@end
+#endif
+
 @interface Balanced()
 @property (nonatomic, strong) NSString *marketplaceURI;
 @end
+
 
 @implementation Balanced
 
@@ -24,8 +32,13 @@
     return self;
 }
 
-- (void) tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
+
+- (void)tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
 {
+#if CL
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"js.balancedpayments.com"];
+#endif
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/cards", API_URL, self.marketplaceURI]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     __block NSURLResponse *response;
@@ -61,8 +74,8 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
                     successBlock(responseJSON);
-                }else
-                {
+                }
+                else {
                     errorBlock(tokenizeError);
                 }
             }];
@@ -76,8 +89,12 @@
 }
 
 
-- (void) tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
+- (void)tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
 {
+#if CL
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"js.balancedpayments.com"];
+#endif
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/bank_accounts", API_URL, self.marketplaceURI]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     __block NSURLResponse *response;
@@ -124,8 +141,8 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
                     successBlock(responseJSON);
-                }else
-                {
+                }
+                else {
                     errorBlock(tokenizeError);
                 }
             }];

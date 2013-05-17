@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87BD31561745C8EF0099FF6C"
-               BuildableName = "balanced"
-               BlueprintName = "balanced"
+               BlueprintIdentifier = "87BD31311745C8EF0099FF6C"
+               BuildableName = "libbalanced-iphoneos.a"
+               BlueprintName = "balanced-iphoneos"
                ReferencedContainer = "container:Balanced.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Release">
+      buildConfiguration = "Debug">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87BD30CC1745C18B0099FF6C"
-               BuildableName = "BalancedTests.octest"
-               BlueprintName = "BalancedTests"
+               BlueprintIdentifier = "87BD313F1745C8EF0099FF6C"
+               BuildableName = "balanced-iphoneosTests.octest"
+               BlueprintName = "balanced-iphoneosTests"
                ReferencedContainer = "container:Balanced.xcodeproj">
             </BuildableReference>
          </TestableReference>
