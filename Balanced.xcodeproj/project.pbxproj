@@ -425,12 +425,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				87BD30BB1745C18B0099FF6C /* balanced-iphonesimulator */,
-				87BD30CC1745C18B0099FF6C /* BalancedTests */,
 				87BD31311745C8EF0099FF6C /* balanced-iphoneos */,
-				87BD31561745C8EF0099FF6C /* balanced */,
-				87BD3180174678240099FF6C /* BalancedTestsCL */,
+				87BD30BB1745C18B0099FF6C /* balanced-iphonesimulator */,
 				87BD319617467FCF0099FF6C /* balanced-iphonesimulato-cl */,
+				87BD30CC1745C18B0099FF6C /* BalancedTests */,
+				87BD3180174678240099FF6C /* BalancedTestsCL */,
+				87BD31561745C8EF0099FF6C /* balanced */,
 			);
 		};
 /* End PBXProject section */
@@ -748,6 +748,7 @@
 		87BD3192174678240099FF6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -755,7 +756,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
 				INFOPLIST_FILE = "BalancedTests/BalancedTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = BalancedTestsCL;
+				VALID_ARCHS = i386;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -763,6 +766,7 @@
 		87BD3193174678240099FF6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -770,7 +774,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
 				INFOPLIST_FILE = "BalancedTests/BalancedTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = BalancedTestsCL;
+				VALID_ARCHS = i386;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -779,10 +785,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87BD317F1746778A0099FF6C /* CL.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = i386;
 				DSTROOT = /tmp/Balanced.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
@@ -799,10 +802,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87BD317F1746778A0099FF6C /* CL.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = i386;
 				DSTROOT = /tmp/Balanced.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
