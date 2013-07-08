@@ -1,6 +1,6 @@
 //
 //  Balanced.m
-//  Balanced iOS Example
+//  Balanced iOS
 //
 //  Created by Ben Mills on 3/9/13.
 //
@@ -26,9 +26,11 @@
 
 - (id)initWithMarketplaceURI:(NSString *)uri {
     self = [super init];
+    
     if (self) {
         [self setMarketplaceURI:uri];
     }
+    
     return self;
 }
 
@@ -59,13 +61,16 @@
                              };
     
     NSString *requestBody = [BPUtilities queryStringFromParameters:params];
+    
     if ([card optionalFields] != NULL && [[card optionalFields] count] > 0) {
         requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[card optionalFields]]];
     }
+    
     [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
     
     __block NSError *tokenizeError;
     __block NSData *responseData;
+    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
@@ -105,7 +110,7 @@
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     
-    NSAssert(bankAccount.accountType!=BPBankAccountTypeUnknown, @"bank account type cannot be unkonwn");
+    NSAssert(bankAccount.accountType != BPBankAccountTypeUnknown, @"bank account type cannot be unkonwn");
     
     NSString *accountTypeString;
     switch (bankAccount.accountType) {
@@ -117,6 +122,7 @@
         default:
             break;
     }
+    
     NSDictionary *params = @{
         @"routing_number":bankAccount.routingNumber,
         @"account_number":bankAccount.accountNumber,
@@ -125,14 +131,18 @@
         @"system_timezone":[NSNumber numberWithInt:[BPUtilities getTimezoneOffset]],
         @"language":[[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
     };
+    
     NSString *requestBody = [BPUtilities queryStringFromParameters:params];
+    
     if ([bankAccount optionalFields] != NULL && [[bankAccount optionalFields] count] > 0) {
         requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[bankAccount optionalFields]]];
     }
+    
     [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
     
     __block NSError *tokenizeError;
     __block NSData *responseData;
+    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];

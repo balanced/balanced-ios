@@ -1,6 +1,6 @@
 //
 //  BPCard.m
-//  Balanced iOS Example
+//  Balanced iOS
 //
 //  Created by Ben Mills on 3/9/13.
 //
@@ -10,14 +10,14 @@
 @implementation BPCard
 @synthesize errors;
 
-- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode
-{
+- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode {
     return [self initWithNumber:cardNumber expirationMonth:expirationMonth expirationYear:expirationYear securityCode:securityCode optionalFields:nil];
 }
 
 - (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode optionalFields:(NSDictionary *)optionalFields
 {
     self = [super init];
+    
     if (self) {
         [self setNumber:[cardNumber stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
@@ -29,6 +29,7 @@
         [self setOptionalFields:[NSDictionary dictionaryWithDictionary:optionalFields]];
         self.errors = [[NSMutableArray alloc] init];
     }
+    
     return self;
 }
 
@@ -48,8 +49,8 @@
 }
 
 - (BOOL)getSecurityCodeValid {
-    if (self.securityCode==0) { return false; }
-    if (self.type==BPCardTypeUnknown) { return false; }
+    if (self.securityCode == 0) { return false; }
+    if (self.type == BPCardTypeUnknown) { return false; }
     NSUInteger requiredLength = (self.type==BPCardTypeAmericanExpress) ? 4 : 3;
     return [self.securityCode length] == requiredLength;
 }

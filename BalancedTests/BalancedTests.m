@@ -25,7 +25,7 @@
         dispatch_semaphore_signal(semaphore);
     }];
     
-    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
     {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
@@ -54,7 +54,7 @@
         dispatch_semaphore_signal(semaphore);
     }];
     
-    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
     
@@ -84,7 +84,7 @@
         dispatch_semaphore_signal(semaphore);
     }];
     
-    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }
     
@@ -109,7 +109,7 @@
         dispatch_semaphore_signal(semaphore);
     }];
     
-    while(dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
     {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
     }

@@ -1,6 +1,6 @@
 //
 //  BPBankAccount.h
-//  Balanced iOS Example
+//  Balanced iOS
 //
 //  Created by Ben Mills on 3/9/13.
 //

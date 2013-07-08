@@ -1,6 +1,6 @@
 //
 //  BPBankAccount.m
-//  Balanced iOS Example
+//  Balanced iOS
 //
 //  Created by Ben Mills on 3/9/13.
 //
@@ -15,6 +15,7 @@
 }
 - (id)initWithRoutingNumber:(NSString *)routingNumber accountNumber:(NSString *)accountNumber accountType:(BPBankAccountType)accountType name:(NSString *)name optionalFields:(NSDictionary *)optionalFields {
     self = [super init];
+    
     if (self) {
         [self setRoutingNumber:routingNumber];
         [self setAccountNumber:accountNumber];
@@ -23,6 +24,7 @@
         [self setOptionalFields:optionalFields];
         [self setErrors:[NSMutableArray array]];
     }
+    
     return self;
 }
 
@@ -66,9 +68,6 @@
     if (!self.nameValid) {
         [errors addObject:@"Account name should not be blank"];
         valid = false;
-    }
-    if (self.errors.count > 0) {
-        NSLog(@"%@", errors);
     }
     
     return valid;

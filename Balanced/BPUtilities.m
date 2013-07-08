@@ -52,8 +52,7 @@
     return [[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]] / 3600;
 }
 
-+ (NSString *)getMACAddress
-{
++ (NSString *)getMACAddress {
     int                 mgmtInfoBase[6];
     char                *msgBuffer = NULL;
     NSString            *errorFlag = NULL;
@@ -109,29 +108,28 @@
     return nil;
 }
 
-+ (NSString *)getIPAddress
-{
++ (NSString *)getIPAddress {
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     NSString *wifiAddress = nil;
     NSString *cellAddress = nil;
     
     // retrieve the current interfaces - returns 0 on success
-    if(!getifaddrs(&interfaces)) {
+    if (!getifaddrs(&interfaces)) {
         // Loop through linked list of interfaces
         temp_addr = interfaces;
-        while(temp_addr != NULL) {
+        while (temp_addr != NULL) {
             sa_family_t sa_type = temp_addr->ifa_addr->sa_family;
-            if(sa_type == AF_INET || sa_type == AF_INET6) {
+            if (sa_type == AF_INET || sa_type == AF_INET6) {
                 NSString *name = [NSString stringWithUTF8String:temp_addr->ifa_name];
                 NSString *addr = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)]; // pdp_ip0
                 
-                if([name isEqualToString:@"en0"]) {
+                if ([name isEqualToString:@"en0"]) {
                     // Interface is the wifi connection on the iPhone
                     wifiAddress = addr;
                 }
                 else {
-                    if([name isEqualToString:@"pdp_ip0"]) {
+                    if ([name isEqualToString:@"pdp_ip0"]) {
                         // Interface is the cell connection on the iPhone
                         cellAddress = addr;
                     }
