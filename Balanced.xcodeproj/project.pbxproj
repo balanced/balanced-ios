@@ -21,6 +21,31 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		77FF22E7178B915D00C3ECB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BD30F31745C2C60099FF6C /* UIKit.framework */; };
+		77FF22E8178B915D00C3ECB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BD30BF1745C18B0099FF6C /* Foundation.framework */; };
+		77FF22E9178B915D00C3ECB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C7922A178B7CD600801CAB /* CoreGraphics.framework */; };
+		77FF22EF178B915D00C3ECB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77FF22ED178B915D00C3ECB2 /* InfoPlist.strings */; };
+		77FF22F1178B915D00C3ECB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FF22F0178B915D00C3ECB2 /* main.m */; };
+		77FF22F5178B915D00C3ECB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FF22F4178B915D00C3ECB2 /* AppDelegate.m */; };
+		77FF22F7178B915D00C3ECB2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF22F6178B915D00C3ECB2 /* Default.png */; };
+		77FF22F9178B915D00C3ECB2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF22F8178B915D00C3ECB2 /* Default@2x.png */; };
+		77FF22FB178B915D00C3ECB2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF22FA178B915D00C3ECB2 /* Default-568h@2x.png */; };
+		77FF22FE178B915D00C3ECB2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FF22FD178B915D00C3ECB2 /* ViewController.m */; };
+		77FF2301178B915D00C3ECB2 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77FF22FF178B915D00C3ECB2 /* ViewController_iPhone.xib */; };
+		77FF2304178B915D00C3ECB2 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2302178B915D00C3ECB2 /* ViewController_iPad.xib */; };
+		77FF232A178B946500C3ECB2 /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2320178B946500C3ECB2 /* amex.png */; };
+		77FF232B178B946500C3ECB2 /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2321178B946500C3ECB2 /* amex@2x.png */; };
+		77FF232C178B946500C3ECB2 /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2322178B946500C3ECB2 /* discover.png */; };
+		77FF232D178B946500C3ECB2 /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2323178B946500C3ECB2 /* discover@2x.png */; };
+		77FF232E178B946500C3ECB2 /* logo-dots.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2324178B946500C3ECB2 /* logo-dots.png */; };
+		77FF232F178B946500C3ECB2 /* logo-dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2325178B946500C3ECB2 /* logo-dots@2x.png */; };
+		77FF2330178B946500C3ECB2 /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2326178B946500C3ECB2 /* mastercard.png */; };
+		77FF2331178B946500C3ECB2 /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2327178B946500C3ECB2 /* mastercard@2x.png */; };
+		77FF2332178B946500C3ECB2 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2328178B946500C3ECB2 /* visa.png */; };
+		77FF2333178B946500C3ECB2 /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2329178B946500C3ECB2 /* visa@2x.png */; };
+		77FF2335178B959500C3ECB2 /* balanced.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF2334178B959500C3ECB2 /* balanced.a */; };
+		77FF2336178B959A00C3ECB2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BD30F11745C2BC0099FF6C /* CoreTelephony.framework */; };
+		77FF2338178B95A500C3ECB2 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 77FF2337178B95A500C3ECB2 /* include */; };
 		873A84601745C83E00332305 /* BPBankAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 873A845B1745C83D00332305 /* BPBankAccountTests.m */; };
 		873A84611745C83E00332305 /* BPCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 873A845D1745C83D00332305 /* BPCardTests.m */; };
 		873A84621745C83E00332305 /* BPUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 873A845F1745C83E00332305 /* BPUtilitiesTests.m */; };
@@ -136,6 +161,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		77FF22E6178B915D00C3ECB2 /* BalancedExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalancedExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77FF22EC178B915D00C3ECB2 /* BalancedExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BalancedExample-Info.plist"; sourceTree = "<group>"; };
+		77FF22EE178B915D00C3ECB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		77FF22F0178B915D00C3ECB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77FF22F2178B915D00C3ECB2 /* BalancedExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BalancedExample-Prefix.pch"; sourceTree = "<group>"; };
+		77FF22F3178B915D00C3ECB2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		77FF22F4178B915D00C3ECB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		77FF22F6178B915D00C3ECB2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		77FF22F8178B915D00C3ECB2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		77FF22FA178B915D00C3ECB2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		77FF22FC178B915D00C3ECB2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		77FF22FD178B915D00C3ECB2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		77FF2300178B915D00C3ECB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		77FF2303178B915D00C3ECB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		77FF2320178B946500C3ECB2 /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
+		77FF2321178B946500C3ECB2 /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
+		77FF2322178B946500C3ECB2 /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
+		77FF2323178B946500C3ECB2 /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
+		77FF2324178B946500C3ECB2 /* logo-dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-dots.png"; sourceTree = "<group>"; };
+		77FF2325178B946500C3ECB2 /* logo-dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-dots@2x.png"; sourceTree = "<group>"; };
+		77FF2326178B946500C3ECB2 /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
+		77FF2327178B946500C3ECB2 /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
+		77FF2328178B946500C3ECB2 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
+		77FF2329178B946500C3ECB2 /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
+		77FF2334178B959500C3ECB2 /* balanced.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = balanced.a; sourceTree = SOURCE_ROOT; };
+		77FF2337178B95A500C3ECB2 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = SOURCE_ROOT; };
 		873A845A1745C83D00332305 /* BPBankAccountTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBankAccountTests.h; sourceTree = "<group>"; };
 		873A845B1745C83D00332305 /* BPBankAccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBankAccountTests.m; sourceTree = "<group>"; };
 		873A845C1745C83D00332305 /* BPCardTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCardTests.h; sourceTree = "<group>"; };
@@ -167,9 +218,22 @@
 		87BD3194174678240099FF6C /* BalancedTestsCL.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BalancedTestsCL.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BD31A817467FCF0099FF6C /* libbalanced-iphonesimulator-cl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libbalanced-iphonesimulator-cl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BD31B01746886F0099FF6C /* balanced.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = balanced.a; sourceTree = "<group>"; };
+		87C7922A178B7CD600801CAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		77FF22E3178B915D00C3ECB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77FF2336178B959A00C3ECB2 /* CoreTelephony.framework in Frameworks */,
+				77FF22E7178B915D00C3ECB2 /* UIKit.framework in Frameworks */,
+				77FF22E8178B915D00C3ECB2 /* Foundation.framework in Frameworks */,
+				77FF22E9178B915D00C3ECB2 /* CoreGraphics.framework in Frameworks */,
+				77FF2335178B959500C3ECB2 /* balanced.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87BD30B91745C18B0099FF6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,11 +291,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77FF22EA178B915D00C3ECB2 /* BalancedExample */ = {
+			isa = PBXGroup;
+			children = (
+				77FF2337178B95A500C3ECB2 /* include */,
+				77FF2334178B959500C3ECB2 /* balanced.a */,
+				77FF231F178B946500C3ECB2 /* images */,
+				77FF22F3178B915D00C3ECB2 /* AppDelegate.h */,
+				77FF22F4178B915D00C3ECB2 /* AppDelegate.m */,
+				77FF22FC178B915D00C3ECB2 /* ViewController.h */,
+				77FF22FD178B915D00C3ECB2 /* ViewController.m */,
+				77FF22FF178B915D00C3ECB2 /* ViewController_iPhone.xib */,
+				77FF2302178B915D00C3ECB2 /* ViewController_iPad.xib */,
+				77FF22EB178B915D00C3ECB2 /* Supporting Files */,
+			);
+			path = BalancedExample;
+			sourceTree = "<group>";
+		};
+		77FF22EB178B915D00C3ECB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77FF22EC178B915D00C3ECB2 /* BalancedExample-Info.plist */,
+				77FF22ED178B915D00C3ECB2 /* InfoPlist.strings */,
+				77FF22F0178B915D00C3ECB2 /* main.m */,
+				77FF22F2178B915D00C3ECB2 /* BalancedExample-Prefix.pch */,
+				77FF22F6178B915D00C3ECB2 /* Default.png */,
+				77FF22F8178B915D00C3ECB2 /* Default@2x.png */,
+				77FF22FA178B915D00C3ECB2 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77FF231F178B946500C3ECB2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				77FF2320178B946500C3ECB2 /* amex.png */,
+				77FF2321178B946500C3ECB2 /* amex@2x.png */,
+				77FF2322178B946500C3ECB2 /* discover.png */,
+				77FF2323178B946500C3ECB2 /* discover@2x.png */,
+				77FF2324178B946500C3ECB2 /* logo-dots.png */,
+				77FF2325178B946500C3ECB2 /* logo-dots@2x.png */,
+				77FF2326178B946500C3ECB2 /* mastercard.png */,
+				77FF2327178B946500C3ECB2 /* mastercard@2x.png */,
+				77FF2328178B946500C3ECB2 /* visa.png */,
+				77FF2329178B946500C3ECB2 /* visa@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		87BD30B31745C18B0099FF6C = {
 			isa = PBXGroup;
 			children = (
 				87BD30C11745C18B0099FF6C /* Balanced */,
 				87BD30D61745C18B0099FF6C /* BalancedTests */,
+				77FF22EA178B915D00C3ECB2 /* BalancedExample */,
 				87BD30BE1745C18B0099FF6C /* Frameworks */,
 				87BD30BD1745C18B0099FF6C /* Products */,
 				87BD31B01746886F0099FF6C /* balanced.a */,
@@ -246,6 +359,7 @@
 				87BD31321745C8EF0099FF6C /* libbalanced-iphoneos.a */,
 				87BD3194174678240099FF6C /* BalancedTestsCL.octest */,
 				87BD31A817467FCF0099FF6C /* libbalanced-iphonesimulator-cl.a */,
+				77FF22E6178B915D00C3ECB2 /* BalancedExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +371,7 @@
 				87BD30F11745C2BC0099FF6C /* CoreTelephony.framework */,
 				87BD30BF1745C18B0099FF6C /* Foundation.framework */,
 				87BD30CE1745C18B0099FF6C /* SenTestingKit.framework */,
+				87C7922A178B7CD600801CAB /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,6 +430,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		77FF22E5178B915D00C3ECB2 /* BalancedExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77FF2305178B915D00C3ECB2 /* Build configuration list for PBXNativeTarget "BalancedExample" */;
+			buildPhases = (
+				77FF22E2178B915D00C3ECB2 /* Sources */,
+				77FF22E3178B915D00C3ECB2 /* Frameworks */,
+				77FF22E4178B915D00C3ECB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BalancedExample;
+			productName = BalancedExample;
+			productReference = 77FF22E6178B915D00C3ECB2 /* BalancedExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		87BD30BB1745C18B0099FF6C /* balanced-iphonesimulator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87BD30E11745C18B0099FF6C /* Build configuration list for PBXNativeTarget "balanced-iphonesimulator" */;
@@ -431,11 +563,36 @@
 				87BD30CC1745C18B0099FF6C /* BalancedTests */,
 				87BD3180174678240099FF6C /* BalancedTestsCL */,
 				87BD31561745C8EF0099FF6C /* balanced */,
+				77FF22E5178B915D00C3ECB2 /* BalancedExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		77FF22E4178B915D00C3ECB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77FF22EF178B915D00C3ECB2 /* InfoPlist.strings in Resources */,
+				77FF22F7178B915D00C3ECB2 /* Default.png in Resources */,
+				77FF22F9178B915D00C3ECB2 /* Default@2x.png in Resources */,
+				77FF22FB178B915D00C3ECB2 /* Default-568h@2x.png in Resources */,
+				77FF2301178B915D00C3ECB2 /* ViewController_iPhone.xib in Resources */,
+				77FF2304178B915D00C3ECB2 /* ViewController_iPad.xib in Resources */,
+				77FF232A178B946500C3ECB2 /* amex.png in Resources */,
+				77FF232B178B946500C3ECB2 /* amex@2x.png in Resources */,
+				77FF232C178B946500C3ECB2 /* discover.png in Resources */,
+				77FF232D178B946500C3ECB2 /* discover@2x.png in Resources */,
+				77FF232E178B946500C3ECB2 /* logo-dots.png in Resources */,
+				77FF232F178B946500C3ECB2 /* logo-dots@2x.png in Resources */,
+				77FF2330178B946500C3ECB2 /* mastercard.png in Resources */,
+				77FF2331178B946500C3ECB2 /* mastercard@2x.png in Resources */,
+				77FF2332178B946500C3ECB2 /* visa.png in Resources */,
+				77FF2333178B946500C3ECB2 /* visa@2x.png in Resources */,
+				77FF2338178B95A500C3ECB2 /* include in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87BD30CA1745C18B0099FF6C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -480,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphonesimulator -sdk iphonesimulator6.1 \"ARCHS=i386 x86_64\" \"VALID_ARCHS=i386 x86_64\" build > /dev/null\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphoneos -sdk iphoneos6.1 \"ARCHS=armv6 armv7 armv7s\" build > /dev/null\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphonesimulator/libbalanced-iphonesimulator.a\" \\\n\"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/libbalanced-iphoneos.a\" -output \\\n\"${PROJECT_DIR}/balanced.a\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/include\" \"${PROJECT_DIR}/include\"\n\nmv \"${PROJECT_DIR}/include/balanced-iphoneos\" \"${PROJECT_DIR}/include/balanced\"";
+			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphonesimulator -sdk iphonesimulator6.1 \"ARCHS=i386\" \"VALID_ARCHS=i386\" build > /dev/null\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphoneos -sdk iphoneos6.1 \"ARCHS=armv6 armv7 armv7s\" build > /dev/null\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphonesimulator/libbalanced-iphonesimulator.a\" \\\n\"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/libbalanced-iphoneos.a\" -output \\\n\"${PROJECT_DIR}/balanced.a\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/include\" \"${PROJECT_DIR}/include\"\n\nmv \"${PROJECT_DIR}/include/balanced-iphoneos\" \"${PROJECT_DIR}/include/balanced\"";
 		};
 		87BD3190174678240099FF6C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -499,6 +656,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		77FF22E2178B915D00C3ECB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77FF22F1178B915D00C3ECB2 /* main.m in Sources */,
+				77FF22F5178B915D00C3ECB2 /* AppDelegate.m in Sources */,
+				77FF22FE178B915D00C3ECB2 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87BD30B81745C18B0099FF6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,6 +737,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		77FF22ED178B915D00C3ECB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77FF22EE178B915D00C3ECB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		77FF22FF178B915D00C3ECB2 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77FF2300178B915D00C3ECB2 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		77FF2302178B915D00C3ECB2 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77FF2303178B915D00C3ECB2 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
 		87BD30D91745C18B0099FF6C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -581,6 +772,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		77FF2306178B915D00C3ECB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BalancedExample/BalancedExample-Prefix.pch";
+				INFOPLIST_FILE = "BalancedExample/BalancedExample-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		77FF2307178B915D00C3ECB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BalancedExample/BalancedExample-Prefix.pch";
+				INFOPLIST_FILE = "BalancedExample/BalancedExample-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		87BD30DF1745C18B0099FF6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -649,7 +875,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 $(ARCHS_STANDARD_32_BIT)";
 			};
 			name = Debug;
 		};
@@ -668,7 +894,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 $(ARCHS_STANDARD_32_BIT)";
 			};
 			name = Release;
 		};
@@ -818,6 +1044,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		77FF2305178B915D00C3ECB2 /* Build configuration list for PBXNativeTarget "BalancedExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77FF2306178B915D00C3ECB2 /* Debug */,
+				77FF2307178B915D00C3ECB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		87BD30B71745C18B0099FF6C /* Build configuration list for PBXProject "Balanced" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
