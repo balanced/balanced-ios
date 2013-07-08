@@ -12,7 +12,7 @@ Current version : 0.4
 
 ## Installation
 
-- Download the framework from LINK HERE.
+- [Download the pre-built library](https://github.com/balanced/balanced-ios/releases/0.4).
 - Add balanced.a to your project and to Build Phases -> Link Binary With Libraries.
 - Add CoreTelephony.framework to Build Phases -> Link Binary With Libraries.
 
