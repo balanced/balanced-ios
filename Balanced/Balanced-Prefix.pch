@@ -7,4 +7,4 @@
     #import <UIKit/UIKit.h>
 #endif
 
-#define BALANCED_IOS_VERSION @"0.3"
+#define BALANCED_IOS_VERSION @"0.4"
