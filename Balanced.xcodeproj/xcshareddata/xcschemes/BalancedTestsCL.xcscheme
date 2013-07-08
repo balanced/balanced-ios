@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "87BD3180174678240099FF6C"
-               BuildableName = "BalancedTests copy.octest"
+               BuildableName = "BalancedTestsCL.octest"
                BlueprintName = "BalancedTestsCL"
                ReferencedContainer = "container:Balanced.xcodeproj">
             </BuildableReference>
