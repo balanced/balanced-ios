@@ -147,6 +147,7 @@
     }
     [tvResponseView setHidden:YES];
     [tvResponseView setAlpha:0.0];
+    [cardImage setImage:nil];
 }
 
 - (void)setSubmitButton {
