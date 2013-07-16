@@ -38,7 +38,7 @@
         [digits addObject:[NSNumber numberWithInt:[[self.routingNumber substringWithRange:NSMakeRange(i, 1)] intValue]]];
     }
     
-    return (7 * ([digits[0] intValue] + [digits[3] intValue] + [digits[6] intValue]) +
+    return [digits[8] intValue] == (7 * ([digits[0] intValue] + [digits[3] intValue] + [digits[6] intValue]) +
             3 * ([digits[1] intValue] + [digits[4] intValue] + [digits[7] intValue]) +
             9 * ([digits[2] intValue] + [digits[5] intValue])
             ) % 10;
