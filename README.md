@@ -2,8 +2,12 @@
 
 [![Build Status](https://travis-ci.org/balanced/balanced-ios.png)](https://travis-ci.org/balanced/balanced-ios)
 
-iOS library for working with Balanced Payments.
+iOS library for tokenizing credit card and bank accounts with Balanced Payments.
 Current version : 0.4
+
+Please refer to [creating a new bank account](https://docs.balancedpayments.com/current/api#creating-a-new-bank-account) for field documentation.
+
+It's also recommended to review the [best practices](https://docs.balancedpayments.com/current/#best-practices documentation) section of the [Balanced documentation](https://docs.balancedpayments.com/current).
 
 ## Requirements
 
@@ -48,6 +52,8 @@ Instantiate a balanced instance with your marketplace URI.
     BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
 
 ##### With optional fields
+
+Please refer to the [official Balanced documentation](https://docs.balancedpayments.com/current/api#creating-a-new-bank-account) for field documentation
 
 Use an NSDictionary for additional card fields you wish to specify.
 
