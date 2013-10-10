@@ -34,7 +34,7 @@
 - (void)testVisaCardType {
     NSString *cardNumber = @"41111111111111111";
     BPCard *card = [[BPCard alloc] initWithNumber:cardNumber expirationMonth:8 expirationYear:2025 securityCode:@"123"];
-    STAssertTrue(card.type==BPCardTypeVisa, @"Card type should be %@ but was ", cardNumber, card.type);
+    STAssertTrue(card.type==BPCardTypeVisa, @"Card type should be %@ but was %@", @"Visa", card.type);
 }
 
 - (void)testMastercardCardType {
@@ -129,7 +129,7 @@
 
 - (void)testNonExpiredCardExpiresThisYear {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
-    BPCard *card = [[BPCard alloc] initWithNumber:@"411111111111111112" expirationMonth:8 expirationYear:components.year securityCode:@"123"];
+    BPCard *card = [[BPCard alloc] initWithNumber:@"411111111111111112" expirationMonth:components.month+1 expirationYear:components.year securityCode:@"123"];
     STAssertFalse(card.expired, @"Card should not be expired");
 }
 
