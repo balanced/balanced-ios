@@ -29,7 +29,21 @@
 
 - (void)submitCardInfo {
     __block NSDictionary *response;
-    BPCard *card = [[BPCard alloc] initWithNumber:[tfCardNumber text] expirationMonth:[[tfExpMonth text] integerValue] expirationYear:[[tfExpYear text] integerValue] securityCode:[tfCVV text]];
+
+    NSMutableDictionary *optionalFields = [[NSMutableDictionary alloc] init];
+
+    if ([[tfCVV text] length] >= 3) {
+        [optionalFields setObject:[tfCVV text] forKey:BPCardOptionalParamSecurityCodeKey];
+    }
+
+    if ([[tfName text] length] > 0) {
+        [optionalFields setObject:[tfName text] forKey:BPCardOptionalParamSecurityCodeKey];
+    }
+
+    BPCard *card = [[BPCard alloc] initWithNumber:[tfCardNumber text]
+                                  expirationMonth:[[tfExpMonth text] integerValue]
+                                   expirationYear:[[tfExpYear text] integerValue]
+                                   optionalFields:optionalFields];
     
     if (card.valid) {
         Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
@@ -74,7 +88,7 @@
 
 - (void)cardNumberDidChange {
     if ([[tfCardNumber text] length] >= 12) {
-        BPCard *card = [[BPCard alloc] initWithNumber:[tfCardNumber text] expirationMonth:8 expirationYear:2025 securityCode:@"123"];
+        BPCard *card = [[BPCard alloc] initWithNumber:[tfCardNumber text] expirationMonth:8 expirationYear:2025];
 
         if (card.type != previousCardType) {
             [UIView animateWithDuration:0.75 animations:^{
