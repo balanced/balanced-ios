@@ -43,7 +43,7 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/cards", API_URL, self.marketplaceURI]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    __block NSURLResponse *response;
+    __block NSHTTPURLResponse *response;
     NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:
                              @"application/json", @"accept",
                              @"application/x-www-form-urlencoded charset=utf-8", @"Content-Type",
@@ -75,9 +75,13 @@
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
             NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
+            NSDictionary *structuredResponse = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                responseJSON, @"data",
+                                                [NSString stringWithFormat:@"%d", [response statusCode]], @"status",
+                                                nil];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
-                    successBlock(responseJSON);
+                    successBlock(structuredResponse);
                 }
                 else {
                     errorBlock(tokenizeError);
@@ -101,7 +105,7 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/bank_accounts", API_URL, self.marketplaceURI]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    __block NSURLResponse *response;
+    __block NSHTTPURLResponse *response;
     NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:
                              @"application/json", @"accept",
                              @"application/x-www-form-urlencoded charset=utf-8", @"Content-Type",
@@ -146,10 +150,16 @@
     [queue addOperationWithBlock:^{
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
-            NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
+            NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                         options:NSJSONReadingMutableContainers
+                                                                           error:&tokenizeError];
+            NSDictionary *structuredResponse = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                            responseJSON, @"data",
+                                            [NSString stringWithFormat:@"%d", [response statusCode]], @"status",
+                                            nil];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
-                    successBlock(responseJSON);
+                    successBlock(structuredResponse);
                 }
                 else {
                     errorBlock(tokenizeError);
