@@ -637,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphonesimulator -sdk iphonesimulator6.1 \"ARCHS=i386\" \"VALID_ARCHS=i386\" build > /dev/null\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphoneos -sdk iphoneos6.1 \"ARCHS=armv6 armv7 armv7s\" build > /dev/null\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphonesimulator/libbalanced-iphonesimulator.a\" \\\n\"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/libbalanced-iphoneos.a\" -output \\\n\"${PROJECT_DIR}/balanced.a\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/include\" \"${PROJECT_DIR}/include\"\n\nmv \"${PROJECT_DIR}/include/balanced-iphoneos\" \"${PROJECT_DIR}/include/balanced\"";
+			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\necho \"${BUILT_PRODUCTS_DIR}\"\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphonesimulator -sdk iphonesimulator7.0 \"ARCHS=i386\" \"VALID_ARCHS=i386\" build > /dev/null\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphoneos -sdk iphoneos7.0 \"ARCHS=armv6 armv7 armv7s\" build > /dev/null\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphonesimulator/libbalanced-iphonesimulator.a\" \\\n\"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/libbalanced-iphoneos.a\" -output \\\n\"${PROJECT_DIR}/balanced.a\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/include\" \"${PROJECT_DIR}/include\"\n\nmv \"${PROJECT_DIR}/include/balanced-iphoneos\" \"${PROJECT_DIR}/include/balanced\"";
 		};
 		87BD3190174678240099FF6C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -779,6 +779,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BalancedExample/BalancedExample-Prefix.pch";
 				INFOPLIST_FILE = "BalancedExample/BalancedExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -796,6 +797,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BalancedExample/BalancedExample-Prefix.pch";
 				INFOPLIST_FILE = "BalancedExample/BalancedExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
