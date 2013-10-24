@@ -10,11 +10,17 @@
 @implementation BPCard
 @synthesize errors;
 
-- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode {
-    return [self initWithNumber:cardNumber expirationMonth:expirationMonth expirationYear:expirationYear securityCode:securityCode optionalFields:nil];
+- (id)initWithNumber:(NSString *)cardNumber
+     expirationMonth:(NSUInteger)expirationMonth
+      expirationYear:(NSUInteger)expirationYear
+{
+    return [self initWithNumber:cardNumber expirationMonth:expirationMonth expirationYear:expirationYear optionalFields:nil];
 }
 
-- (id)initWithNumber:(NSString *)cardNumber expirationMonth:(NSUInteger)expirationMonth expirationYear:(NSUInteger)expirationYear securityCode:(NSString *)securityCode optionalFields:(NSDictionary *)optionalFields
+- (id)initWithNumber:(NSString *)cardNumber
+     expirationMonth:(NSUInteger)expirationMonth
+      expirationYear:(NSUInteger)expirationYear
+      optionalFields:(NSDictionary *)optionalFields
 {
     self = [super init];
     
@@ -22,10 +28,9 @@
         [self setNumber:[cardNumber stringByReplacingOccurrencesOfString:@"\\D"
                                                        withString:@""
                                                           options:NSRegularExpressionSearch
-                                                                   range:NSMakeRange(0, cardNumber.length)]];
+                                                            range:NSMakeRange(0, cardNumber.length)]];
         [self setExpirationMonth:expirationMonth];
         [self setExpirationYear:expirationYear];
-        [self setSecurityCode:securityCode];
         [self setOptionalFields:[NSDictionary dictionaryWithDictionary:optionalFields]];
         self.errors = [[NSMutableArray alloc] init];
     }
@@ -48,11 +53,25 @@
     return (total % 10) == 0;
 }
 
-- (BOOL)getSecurityCodeValid {
-    if (self.securityCode == 0) { return false; }
-    if (self.type == BPCardTypeUnknown) { return false; }
-    NSUInteger requiredLength = (self.type==BPCardTypeAmericanExpress) ? 4 : 3;
-    return [self.securityCode length] == requiredLength;
+- (BPCardSecurityCodeCheck)getSecurityCodeCheck {
+    if (self.type == BPCardTypeUnknown) { return BPCardSecurityCodeCheckUnknown; }
+    if (self.optionalFields == nil) { return BPCardSecurityCodeCheckUnknown; }
+    if ([self.optionalFields valueForKey:BPCardOptionalParamSecurityCodeKey] != nil) {
+        NSString *security_code = [[self.optionalFields valueForKey:BPCardOptionalParamSecurityCodeKey]
+                                    stringByReplacingOccurrencesOfString:@"\\D"
+                                                              withString:@""
+                                                                 options:NSRegularExpressionSearch
+                                                                   range:NSMakeRange(0, [[self.optionalFields valueForKey:BPCardOptionalParamSecurityCodeKey] length])];
+        NSUInteger requiredLength = (self.type==BPCardTypeAmericanExpress) ? 4 : 3;
+        if ([security_code length] == requiredLength) {
+            return BPCardSecurityCodeCheckPassed;
+        }
+        else {
+            return BPCardSecurityCodeCheckFailed;
+        }
+    }
+
+    return BPCardSecurityCodeCheckUnknown;
 }
 
 - (BOOL)getExpired {
@@ -75,11 +94,6 @@
     
     if (self.expired) {
         [errors addObject:@"Card is expired"];
-        valid = false;
-    }
-    
-    if (!self.securityCodeValid) {
-        [errors addObject:@"Security code is not valid"];
         valid = false;
     }
     
