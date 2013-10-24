@@ -35,21 +35,27 @@ You can copy the headers directly into your proejct and add them as direct refer
 
 ## Usage
 
-    #import "Balanced.h" - Tokenizing methods
-    #import "BPBankAccount.h" - Bank Accounts
-    #import "BPCard.h" - Cards
+```objectivec
+#import "Balanced.h" - Tokenizing methods
+#import "BPBankAccount.h" - Bank Accounts
+#import "BPCard.h" - Cards
+```
 
 #### Create a marketplace object
 
 Instantiate a balanced instance with your marketplace URI.
 
-    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP6E3EVlPOsagSdcBNUXWBDQ"];
+```objectivec
+Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP6E3EVlPOsagSdcBNUXWBDQ"];
+```
 
 #### Create a card object
 
 ##### With only required fields
 
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
+```objectivec
+BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025];
+```
 
 ##### With optional fields
 
@@ -57,36 +63,89 @@ Please refer to the [official Balanced documentation](https://docs.balancedpayme
 
 Use an NSDictionary for additional card fields you wish to specify.
 
-    NSDictionary *optionalFields = @{
-                                     BPCardOptionalParamNameKey:@"Johann Bernoulli",
-                                     BPCardOptionalParamStreetAddressKey:@"123 Main Street",
-                                     BPCardOptionalParamPostalCodeKey:@"11111"
-                                     };
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123" optionalFields:optionalFields];
+```objectivec
+NSDictionary *optionalFields = @{
+                                 BPCardOptionalParamSecurityCodeKey:@"123",
+                                 BPCardOptionalParamNameKey:@"Johann Bernoulli",
+                                 BPCardOptionalParamStreetAddressKey:@"123 Main Street",
+                                 BPCardOptionalParamPostalCodeKey:@"11111"
+                                };
+BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242"
+                              expirationMonth:8
+                               expirationYear:2025
+                               optionalFields:optionalFields];
+```
 
 #### Tokenize a card
 
-    BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025 securityCode:@"123"];
-    Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP6E3EVlPOsagSdcBNUXWBDQ"];
-    [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
-      // success
-    } onError:^(NSError *error) {
-      // failure
-    }];
+```objectivec
+BPCard *card = [[BPCard alloc] initWithNumber:@"4242424242424242" expirationMonth:8 expirationYear:2025];
+Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP6E3EVlPOsagSdcBNUXWBDQ"];
+[balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
+    // success
+} onError:^(NSError *error) {
+    // failure
+}];
+```
+
+##### Example response
+
+```
+{
+    data =     {
+        "_type" = card;
+        "_uris" =         {
+        };
+        account = "<null>";
+        brand = Visa;
+        "card_type" = visa;
+        "country_code" = "<null>";
+        "created_at" = "2013-10-24T21:45:57.306483Z";
+        customer = "<null>";
+        "expiration_month" = 8;
+        "expiration_year" = 2014;
+        hash = 8ead77c90a606701ae7614bb9a2ce802e34bdb706e1eeb4ec01a1eda8875d001;
+        id = CC5bm6UZ2zbTgxPOYRZjsvbi;
+        "is_valid" = 1;
+        "is_verified" = 1;
+        "last_four" = 1111;
+        meta =         {
+        };
+        name = "<null>";
+        "postal_code" = "<null>";
+        "postal_code_check" = unknown;
+        "security_code_check" = passed;
+        "street_address" = "<null>";
+        uri = "/v1/marketplaces/TEST-MP1AiLUNRhKX28DrJDbd9LX1/cards/CC5bm6UZ2zbTgxPOYRZjsvbi";
+    };
+    status = 201;
+}
+```
+
 
 #### Create a bank account object
 
 ##### With only required fields
 
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli"];
+```objectivec
+BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273"
+                                                   accountNumber:@"111111111111"
+                                                     accountType:BPBankAccountTypeChecking
+                                                            name:@"Johann Bernoulli"];
+```
 
 ##### With optional fields
 
 Use an NSDictionary for additional card fields you wish to specify.
 
-    NSDictionary *optionalFields = @{BPCardOptionalParamMetaKey:@"Test"};
-    BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273" accountNumber:@"111111111111" accountType:BPBankAccountTypeChecking name:@"Johann Bernoulli" optionalFields:optionalFields];
-
+```objectivec
+NSDictionary *optionalFields = @{ BPCardOptionalParamMetaKey:@"Test" };
+BPBankAccount *ba = [[BPBankAccount alloc] initWithRoutingNumber:@"053101273"
+                                                   accountNumber:@"111111111111"
+                                                     accountType:BPBankAccountTypeChecking
+                                                            name:@"Johann Bernoulli"
+                                                  optionalFields:optionalFields];
+```
 
 ## Contributing
 
