@@ -21,12 +21,11 @@
 #pragma mark - Utility Methods
 
 + (NSString *)queryStringFromParameters:(NSDictionary *)params {
-    __block NSString *queryString = @"";
-    
+    NSMutableString *queryString = [NSMutableString string];
     [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        queryString = [queryString stringByAppendingFormat:@"&%@=%@", key, obj];
+        NSString* contentToAppend = [NSString stringWithFormat: @"&%@=%@", obj, key];
+        [queryString appendString:contentToAppend];
     }];
-    
     return queryString;
 }
 
