@@ -18,3 +18,4 @@ DerivedData
 balanced.a
 include
 *.xccheckout
+*.zip
