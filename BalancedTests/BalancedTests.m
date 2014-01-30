@@ -53,7 +53,7 @@
     }
 
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"400"], [NSString stringWithFormat:@"Status should be 400 but was %@", [response valueForKey:@"status"]]);
+    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"409"], [NSString stringWithFormat:@"Status should be 409 but was %@", [response valueForKey:@"status"]]);
     STAssertNil([[response valueForKey:@"data"] valueForKey:@"uri"], @"Card URI should not be nil");
 }
 
