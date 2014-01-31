@@ -40,50 +40,31 @@
         [optionalFields setObject:[tfName text] forKey:BPCardOptionalParamSecurityCodeKey];
     }
 
-    //if (card.valid) {
-        Balanced *balanced = [[Balanced alloc] init];
-        [balanced createCardWithNumber:[tfCardNumber text]
-                       expirationMonth:[[tfExpMonth text] integerValue]
-                        expirationYear:[[tfExpYear text] integerValue]
-                             onSuccess:^(NSDictionary *responseParams) {
-                                 response = responseParams;
-                                 [tvResponseView setText:[response description]];
-                                 NSLog(@"%@", response);
-                                 
-                                 [self setActivityIndicatorEnabled:NO];
-                                 [self setResetButton];
-                                 tvResponseView.alpha = 0.0;
-                                 [UIView animateWithDuration:0.5 animations:^{
-                                     [tvResponseView setHidden:NO];
-                                     tvResponseView.alpha = 1.0;
-                                 }];
-                             }
-                               onError:^(NSError *error) {
-                                   [tvResponseView setText:[response description]];
-                                   NSLog(@"%@", [error description]);
-                                   
-                                   [self setActivityIndicatorEnabled:NO];
-                                   [self setResetButton];
-                               }
-                        optionalFields:optionalFields];
-    /*}
-    else {
-        NSString *errorMessage = @"";
-        for (NSString *error in card.errors) {
-            errorMessage = [errorMessage stringByAppendingFormat:@"%@\n", error];
-        }
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error"
-                                                        message:errorMessage
-                                                       delegate: nil
-                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        
-        NSLog(@"%@", card.errors);
-        
-        [self setActivityIndicatorEnabled:NO];
-        [self setSubmitButton];
-    }*/
+    Balanced *balanced = [[Balanced alloc] init];
+    [balanced createCardWithNumber:[tfCardNumber text]
+                   expirationMonth:[[tfExpMonth text] integerValue]
+                    expirationYear:[[tfExpYear text] integerValue]
+                         onSuccess:^(NSDictionary *responseParams) {
+                             response = responseParams;
+                             [tvResponseView setText:[response description]];
+                             NSLog(@"%@", response);
+                             
+                             [self setActivityIndicatorEnabled:NO];
+                             [self setResetButton];
+                             tvResponseView.alpha = 0.0;
+                             [UIView animateWithDuration:0.5 animations:^{
+                                 [tvResponseView setHidden:NO];
+                                 tvResponseView.alpha = 1.0;
+                             }];
+                         }
+                           onError:^(NSError *error) {
+                               [tvResponseView setText:[response description]];
+                               NSLog(@"%@", [error description]);
+                               
+                               [self setActivityIndicatorEnabled:NO];
+                               [self setResetButton];
+                           }
+                    optionalFields:optionalFields];
 }
 
 - (void)cardNumberDidChange {

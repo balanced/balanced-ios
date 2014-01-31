@@ -27,15 +27,7 @@
 @implementation Balanced
 
 - (id)init {
-    self = [super init];
-    
-    if (self) {
-#if CL
-        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:API_URL];
-#endif
-    }
-    
-    return self;
+    return self = [super init];
 }
 
 - (void)createCardWithNumber:(NSString *)number
