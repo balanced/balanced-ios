@@ -40,33 +40,33 @@
         [optionalFields setObject:[tfName text] forKey:BPCardOptionalParamSecurityCodeKey];
     }
 
-    BPCard *card = [[BPCard alloc] initWithNumber:[tfCardNumber text]
-                                  expirationMonth:[[tfExpMonth text] integerValue]
-                                   expirationYear:[[tfExpYear text] integerValue]
-                                   optionalFields:optionalFields];
-    
-    if (card.valid) {
-        Balanced *balanced = [[Balanced alloc] initWithMarketplaceURI:@"/v1/marketplaces/TEST-MP2BTDSHT7BYTjxlhdWtXWNN"];
-        [balanced tokenizeCard:card onSuccess:^(NSDictionary *responseParams) {
-            response = responseParams;
-            [tvResponseView setText:[response description]];
-            NSLog(@"%@", response);
-            
-            [self setActivityIndicatorEnabled:NO];
-            [self setResetButton];
-            tvResponseView.alpha = 0.0;
-            [UIView animateWithDuration:0.5 animations:^{
-                [tvResponseView setHidden:NO];
-                tvResponseView.alpha = 1.0;
-            }];
-        } onError:^(NSError *error) {
-            [tvResponseView setText:[response description]];
-            NSLog(@"%@", [error description]);
-            
-            [self setActivityIndicatorEnabled:NO];
-            [self setResetButton];
-        }];
-    }
+    //if (card.valid) {
+        Balanced *balanced = [[Balanced alloc] init];
+        [balanced createCardWithNumber:[tfCardNumber text]
+                       expirationMonth:[[tfExpMonth text] integerValue]
+                        expirationYear:[[tfExpYear text] integerValue]
+                             onSuccess:^(NSDictionary *responseParams) {
+                                 response = responseParams;
+                                 [tvResponseView setText:[response description]];
+                                 NSLog(@"%@", response);
+                                 
+                                 [self setActivityIndicatorEnabled:NO];
+                                 [self setResetButton];
+                                 tvResponseView.alpha = 0.0;
+                                 [UIView animateWithDuration:0.5 animations:^{
+                                     [tvResponseView setHidden:NO];
+                                     tvResponseView.alpha = 1.0;
+                                 }];
+                             }
+                               onError:^(NSError *error) {
+                                   [tvResponseView setText:[response description]];
+                                   NSLog(@"%@", [error description]);
+                                   
+                                   [self setActivityIndicatorEnabled:NO];
+                                   [self setResetButton];
+                               }
+                        optionalFields:optionalFields];
+    /*}
     else {
         NSString *errorMessage = @"";
         for (NSString *error in card.errors) {
@@ -83,7 +83,7 @@
         
         [self setActivityIndicatorEnabled:NO];
         [self setSubmitButton];
-    }
+    }*/
 }
 
 - (void)cardNumberDidChange {

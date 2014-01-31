@@ -542,7 +542,7 @@
 		87BD30B41745C18B0099FF6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Balanced;
 			};
 			buildConfigurationList = 87BD30B71745C18B0099FF6C /* Build configuration list for PBXProject "Balanced" */;

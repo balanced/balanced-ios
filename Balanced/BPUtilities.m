@@ -20,32 +20,31 @@
 
 #pragma mark - Utility Methods
 
-+ (NSString *)queryStringFromParameters:(NSDictionary *)params {
-    __block NSString *queryString = @"";
-    
-    [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        queryString = [queryString stringByAppendingFormat:@"&%@=%@", key, obj];
-    }];
-    
-    return queryString;
-}
-
-+ (NSString *)userAgentString {
++ (NSDictionary *)capabilities {
     UIDevice *currentDevice = [UIDevice currentDevice];
     NSString *model = [currentDevice model];
     NSString *systemVersion = [currentDevice systemVersion];
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     NSString *carrier = [[networkInfo subscriberCellularProvider] carrierName];
     
-    return [NSString stringWithFormat:@"%@;Balanced iOS %@;%@;%@;%@;%@;%@;%@",
-            [[[NSBundle mainBundle] bundleIdentifier] length] > 0 ? [[NSBundle mainBundle] bundleIdentifier] : @"Unspecified Bundle ID",
-            BALANCED_IOS_VERSION,
-            [currentDevice name],
-            model,
-            systemVersion,
-            [self getIPAddress],
-            [self getMACAddress],
-            carrier.length > 1 ? carrier : @"Wi-Fi"];
+    NSDictionary *capabilities = [[NSDictionary alloc] initWithObjectsAndKeys:
+            [NSNumber numberWithInt:[self getTimezoneOffset]], @"capabilities_system_timezone",
+            [self userAgentString], @"capabilities_user_agent",
+            [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"], @"capabilities_language",
+            [[[NSBundle mainBundle] bundleIdentifier] length] > 0 ? [[NSBundle mainBundle] bundleIdentifier] : @"Unspecified Bundle ID", @"capabilities_bundle_identifier",
+            [currentDevice name], @"capabilities_device_name",
+            model, @"capabilities_device_model",
+            systemVersion, @"capabilities_system_version",
+            [self getIPAddress], @"capabilities_ip_address",
+            [self getMACAddress], @"capabilities_mac_address",
+            carrier.length > 1 ? carrier : @"Wi-Fi", @"capabilities_carrier",
+            nil];
+    return capabilities;
+}
+
++ (NSString *)userAgentString {
+    return [NSString stringWithFormat:@"Balanced iOS %@",
+            BALANCED_IOS_VERSION];
 }
 
 + (int)getTimezoneOffset {

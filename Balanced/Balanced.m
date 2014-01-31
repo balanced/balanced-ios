@@ -8,7 +8,9 @@
 #import "Balanced.h"
 #import "BPUtilities.h"
 
-#define API_URL @"https://js.balancedpayments.com"
+#define API_URL @"api.balancedpayments.com"
+#define API_VERSION @"1.1"
+
 
 #if CL
 @interface NSURLRequest (DummyInterface)
@@ -24,124 +26,140 @@
 
 @implementation Balanced
 
-- (id)initWithMarketplaceURI:(NSString *)uri {
+- (id)init {
     self = [super init];
     
     if (self) {
-        [self setMarketplaceURI:uri];
+#if CL
+        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:API_URL];
+#endif
     }
     
     return self;
 }
 
-
-- (void)tokenizeCard:(BPCard *)card onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
+- (void)createCardWithNumber:(NSString *)number
+             expirationMonth:(NSUInteger)expMonth
+              expirationYear:(NSUInteger)expYear
+                   onSuccess:(BalancedTokenizeResponseBlock)successBlock
+                     onError:(BalancedErrorBlock)errorBlock
 {
-#if CL
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"js.balancedpayments.com"];
-#endif
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/cards", API_URL, self.marketplaceURI]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    __block NSHTTPURLResponse *response;
-    NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"application/json", @"accept",
-                             @"application/x-www-form-urlencoded charset=utf-8", @"Content-Type",
-                             [BPUtilities userAgentString], @"User-Agent", nil];
-    [request setHTTPMethod:@"POST"];
-    [request setAllHTTPHeaderFields:headers];
-    
-    NSDictionary *params = @{
-                            @"card_number":card.number,
-                            @"expiration_month":[NSString stringWithFormat:@"%i",card.expirationMonth],
-                            @"expiration_year":[NSString stringWithFormat:@"%i",card.expirationYear],
-                            @"system_timezone":[NSNumber numberWithInt:[BPUtilities getTimezoneOffset]],
-                            @"language":[[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
-                            };
-    
-    NSString *requestBody = [BPUtilities queryStringFromParameters:params];
-    
-    if ([card optionalFields] != NULL && [[card optionalFields] count] > 0) {
-        requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[card optionalFields]]];
-    }
-    
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
-    
-    __block NSError *tokenizeError;
-    __block NSData *responseData;
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperationWithBlock:^{
-        responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
-        if (tokenizeError == nil) {
-            NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
-            NSDictionary *structuredResponse = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                responseJSON, @"data",
-                                                [NSString stringWithFormat:@"%d", [response statusCode]], @"status",
-                                                nil];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                if (tokenizeError == nil) {
-                    successBlock(structuredResponse);
-                }
-                else {
-                    errorBlock(tokenizeError);
-                }
-            }];
-        }
-        else {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                errorBlock(tokenizeError);
-            }];
-        }
-    }];
+
+    [self createCardWithNumber:number
+                 expirationMonth:expMonth
+                  expirationYear:expYear
+                       onSuccess:successBlock
+                         onError:errorBlock
+                  optionalFields:nil];
 }
 
-
-- (void)tokenizeBankAccount:(BPBankAccount *)bankAccount onSuccess:(BalancedTokenizeResponseBlock)successBlock onError:(BalancedErrorBlock)errorBlock
+- (void)createCardWithNumber:(NSString *)number
+             expirationMonth:(NSUInteger)expMonth
+              expirationYear:(NSUInteger)expYear
+                   onSuccess:(BalancedTokenizeResponseBlock)successBlock
+                     onError:(BalancedErrorBlock)errorBlock
+              optionalFields:(NSDictionary *)optionalFields
 {
-#if CL
-    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"js.balancedpayments.com"];
-#endif
+    BPCard *card = [[BPCard alloc] initWithNumber:number expirationMonth:expMonth expirationYear:expYear optionalFields:optionalFields];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/bank_accounts", API_URL, self.marketplaceURI]];
+    if (card.valid) {
+        NSMutableDictionary *payload = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                        card.number, @"number",
+                                        [NSString stringWithFormat:@"%i",card.expirationMonth], @"expiration_month",
+                                        [NSString stringWithFormat:@"%i",card.expirationYear], @"expiration_year",
+                                        [BPUtilities capabilities], @"meta",
+                                        nil];
+
+        if (optionalFields != NULL && [optionalFields count] > 0) {
+            [payload addEntriesFromDictionary:optionalFields];
+        }
+
+        [self createFundingInstrument:payload type:BPFundingInstrumentTypeCard onSuccess:successBlock onError:errorBlock];
+    }
+    else {
+        errorBlock([NSError errorWithDomain:@"Balanced" code:400 userInfo:[[NSDictionary alloc] initWithObjectsAndKeys:card.errors, @"errors", nil]]);
+    }
+}
+
+- (void)createBankAccountWithRoutingNumber:(NSString *)routingNumber
+                             accountNumber:(NSString *)accountNumber
+                               accountType:(BPBankAccountType)accountType
+                                      name:(NSString *)name
+                                 onSuccess:(BalancedTokenizeResponseBlock)successBlock
+                                   onError:(BalancedErrorBlock)errorBlock
+{
+    [self createBankAccountWithRoutingNumber:routingNumber
+                               accountNumber:accountNumber
+                                 accountType:accountType
+                                        name:name
+                                   onSuccess:successBlock
+                                     onError:errorBlock
+                              optionalFields:nil];
+}
+
+- (void)createBankAccountWithRoutingNumber:(NSString *)routingNumber
+                             accountNumber:(NSString *)accountNumber
+                               accountType:(BPBankAccountType)accountType
+                                      name:(NSString *)name
+                                 onSuccess:(BalancedTokenizeResponseBlock)successBlock
+                                   onError:(BalancedErrorBlock)errorBlock
+                            optionalFields:(NSDictionary *)optionalFields
+{
+    BPBankAccount *bankAccount = [[BPBankAccount alloc] initWithRoutingNumber:routingNumber
+                                                                accountNumber:accountNumber
+                                                                  accountType:accountType
+                                                                         name:name
+                                                               optionalFields:optionalFields];
+    if (bankAccount.valid) {
+        NSString *accountTypeString;
+        switch (bankAccount.accountType) {
+            case BPBankAccountTypeChecking:
+                accountTypeString = @"checking";
+                break;
+            case BPBankAccountTypeSavings:
+                accountTypeString = @"savings";
+            default:
+                break;
+        }
+        
+        NSMutableDictionary *payload = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                        bankAccount.routingNumber, @"routing_number",
+                                        bankAccount.accountNumber, @"account_number",
+                                        accountTypeString, @"type",
+                                        bankAccount.name, @"name",
+                                        nil];
+
+        if (optionalFields != NULL && [optionalFields count] > 0) {
+            [payload addEntriesFromDictionary:optionalFields];
+        }
+
+        [self createFundingInstrument:payload type:BPFundingInstrumentTypeBankAccount onSuccess:successBlock onError:errorBlock];
+    }
+    else {
+        errorBlock([NSError errorWithDomain:@"Balanced" code:400 userInfo:[[NSDictionary alloc] initWithObjectsAndKeys:bankAccount.errors, @"errors", nil]]);
+    }
+}
+
+- (void)createFundingInstrument:(NSDictionary *)payload
+                           type:(BPFundingInstrumentType)type
+                      onSuccess:(BalancedTokenizeResponseBlock)successBlock
+                        onError:(BalancedErrorBlock)errorBlock {
+#if CL
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:API_URL];
+#endif
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@", API_URL, type == BPFundingInstrumentTypeCard ? @"cards" : @"bank_accounts"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     __block NSHTTPURLResponse *response;
     NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"application/json", @"accept",
-                             @"application/x-www-form-urlencoded charset=utf-8", @"Content-Type",
+                             [NSString stringWithFormat:@"application/json;revision=%@", API_VERSION], @"Accept",
+                             @"application/json", @"Content-Type",
                              [BPUtilities userAgentString], @"User-Agent", nil];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     
-    NSAssert(bankAccount.accountType != BPBankAccountTypeUnknown, @"bank account type cannot be unkonwn");
-    
-    NSString *accountTypeString;
-    switch (bankAccount.accountType) {
-        case BPBankAccountTypeChecking:
-            accountTypeString = @"Checking";
-            break;
-        case BPBankAccountTypeSavings:
-            accountTypeString = @"Savings";
-        default:
-            break;
-    }
-    
-    NSDictionary *params = @{
-        @"routing_number":bankAccount.routingNumber,
-        @"account_number":bankAccount.accountNumber,
-        @"type":accountTypeString,
-        @"name":bankAccount.name,
-        @"system_timezone":[NSNumber numberWithInt:[BPUtilities getTimezoneOffset]],
-        @"language":[[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
-    };
-    
-    NSString *requestBody = [BPUtilities queryStringFromParameters:params];
-    
-    if ([bankAccount optionalFields] != NULL && [[bankAccount optionalFields] count] > 0) {
-        requestBody = [requestBody stringByAppendingString:[BPUtilities queryStringFromParameters:[bankAccount optionalFields]]];
-    }
-    
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+    NSError *error;
+    NSData *payloadData = [NSJSONSerialization dataWithJSONObject:payload options:NSJSONWritingPrettyPrinted error:&error];
+    [request setHTTPBody:payloadData];
     
     __block NSError *tokenizeError;
     __block NSData *responseData;
@@ -150,16 +168,11 @@
     [queue addOperationWithBlock:^{
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
-            NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseData
-                                                                         options:NSJSONReadingMutableContainers
-                                                                           error:&tokenizeError];
-            NSDictionary *structuredResponse = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                            responseJSON, @"data",
-                                            [NSString stringWithFormat:@"%d", [response statusCode]], @"status",
-                                            nil];
+            NSMutableDictionary *tokenResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
+            [tokenResponse setObject:[NSString stringWithFormat:@"%d", [response statusCode]] forKey:@"status"];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
-                    successBlock(structuredResponse);
+                    successBlock(tokenResponse);
                 }
                 else {
                     errorBlock(tokenizeError);

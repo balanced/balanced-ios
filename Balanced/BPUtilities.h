@@ -9,10 +9,10 @@
 
 @interface BPUtilities : NSObject
 
-+ (NSString *)queryStringFromParameters:(NSDictionary *)params;
-+ (int)getTimezoneOffset;
-+ (NSString *)getMACAddress;
++ (NSDictionary *)capabilities;
 + (NSString *)getIPAddress;
++ (NSString *)getMACAddress;
++ (int)getTimezoneOffset;
 + (NSString *)userAgentString;
 
 @end
