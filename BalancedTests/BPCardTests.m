@@ -223,7 +223,7 @@
 }
 
 - (void)testNonExpiredCardExpiresThisYear {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     BPCard *card = [[BPCard alloc] initWithNumber:@"411111111111111112" expirationMonth:components.month+1 expirationYear:components.year];
     STAssertFalse(card.expired, @"Card should not be expired");
 }

@@ -75,13 +75,15 @@
 }
 
 - (BOOL)getExpired {
-    if (self.expirationMonth > 12 || self.expirationYear < 1) { return false; }
+    if (self.expirationMonth > 12 || self.expirationMonth < 1) { return true; }
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSInteger currentMonth = [components month];
     NSInteger currentYear = [components year];
     
-    return currentYear > self.expirationYear || (currentYear == self.expirationYear && currentMonth >= self.expirationMonth);
+    if (self.expirationYear < currentYear) { return true; }
+
+    return (self.expirationYear == currentYear && self.expirationMonth < currentMonth);
 }
 
 - (BOOL)getValid {
