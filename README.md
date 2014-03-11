@@ -3,11 +3,16 @@
 [![Build Status](https://travis-ci.org/balanced/balanced-ios.png)](https://travis-ci.org/balanced/balanced-ios)
 
 iOS library for tokenizing credit card and bank accounts with Balanced Payments.
-Current version : 1.0 (beta)
 
-Please refer to [creating a new bank account](https://docs.balancedpayments.com/current/api#creating-a-new-bank-account) for field documentation.
+Current version : 1.0
 
-It's also recommended to review the [best practices](https://docs.balancedpayments.com/current/#best-practices documentation) section of the [Balanced documentation](https://docs.balancedpayments.com/current).
+**v1.x requires Balanced API 1.1. Use [v0.x](https://github.com/balanced/balanced-ios/tree/rev0) for Balanced API 1.0.**
+
+Please refer to the following documentation sections for field documentation:
+* [Create a Card](https://docs.balancedpayments.com/1.1/api/cards/#create-a-card-direct)
+* [Create a BankAccount](https://docs.balancedpayments.com/1.1/api/bank-accounts/#create-a-bank-account-direct)
+
+It's also recommended to review the [best practices](https://docs.balancedpayments.com/1.1/overview/best-practices/) section of the [Balanced documentation](https://docs.balancedpayments.com).
 
 ## Requirements
 
