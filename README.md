@@ -48,7 +48,7 @@ You can copy the headers directly into your project and add them as direct refer
 
 #### Create a marketplace object
 
-Instantiate a balanced instance with your marketplace URI.
+Instantiate a balanced instance. Balanced instances do not need a marketplace URI since Balanced API 1.1 no longer requires authenticated tokenization. For you this means you'll get back a response containing a card href and other attributes. Send the href to your server. 
 
 ```objectivec
 Balanced *balanced = [[Balanced alloc] init];
