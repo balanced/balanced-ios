@@ -43,12 +43,12 @@
 }
 
 + (NSString *)userAgentString {
-    return [NSString stringWithFormat:@"Balanced iOS %@",
+    return [NSString stringWithFormat:@"balanced-ios/%@",
             BALANCED_IOS_VERSION];
 }
 
 + (int)getTimezoneOffset {
-    return [[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]] / 3600;
+    return (int)[[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]] / 3600;
 }
 
 + (NSString *)getMACAddress {

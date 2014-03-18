@@ -637,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\necho \"${BUILT_PRODUCTS_DIR}\"\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphonesimulator -sdk iphonesimulator7.0 \"ARCHS=i386\" \"VALID_ARCHS=i386\" build > /dev/null\n\nxcodebuild -project Balanced.xcodeproj -scheme balanced-iphoneos -sdk iphoneos7.0 \"ARCHS=armv6 armv7 armv7s\" build > /dev/null\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphonesimulator/libbalanced-iphonesimulator.a\" \\\n\"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/libbalanced-iphoneos.a\" -output \\\n\"${PROJECT_DIR}/balanced.a\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/../${CONFIGURATION}-iphoneos/include\" \"${PROJECT_DIR}/include\"\n\nmv \"${PROJECT_DIR}/include/balanced-iphoneos\" \"${PROJECT_DIR}/include/balanced\"";
+			shellScript = "rm -rf \"${PROJECT_DIR}/balanced.a\"\nrm -rf \"${PROJECT_DIR}/include\"\n\nxcodebuild -project \"Balanced.xcodeproj\" -configuration \"Release\" -sdk \"iphoneos7.1\" clean build ARCHS=\"armv7 armv7s arm64\" IPHONEOS_DEPLOYMENT_TARGET=\"6.0\" TARGET_BUILD_DIR=\"${PROJECT_DIR}/build-arm\" BUILT_PRODUCTS_DIR=\"${PROJECT_DIR}/build-arm\"\nxcodebuild -project \"Balanced.xcodeproj\" -configuration \"Release\" -sdk \"iphonesimulator7.1\" clean build ARCHS=\"i386 x86_64\" VALID_ARCHS=\"i386 x86_64\" IPHONEOS_DEPLOYMENT_TARGET=\"6.0\" TARGET_BUILD_DIR=\"${PROJECT_DIR}/build-intel\" BUILT_PRODUCTS_DIR=\"${PROJECT_DIR}/build-intel\"\nlipo -create \"${PROJECT_DIR}/build-arm/libbalanced-iphoneos.a\" \"${PROJECT_DIR}/build-intel/libbalanced-iphoneos.a\" -output \"${PROJECT_DIR}/balanced.a\"\n\nmv \"${PROJECT_DIR}/build-arm/include/balanced-iphoneos\" \"${PROJECT_DIR}/include\"\n\nrm -rf \"${PROJECT_DIR}/build-intel\"\nrm -rf \"${PROJECT_DIR}/build-arm\"";
 		};
 		87BD3190174678240099FF6C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -903,6 +903,10 @@
 		87BD30E51745C18B0099FF6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -911,6 +915,7 @@
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
 				INFOPLIST_FILE = "BalancedTests/BalancedTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -918,6 +923,10 @@
 		87BD30E61745C18B0099FF6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -926,6 +935,7 @@
 				GCC_PREFIX_HEADER = "Balanced/Balanced-Prefix.pch";
 				INFOPLIST_FILE = "BalancedTests/BalancedTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
