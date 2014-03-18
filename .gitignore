@@ -19,3 +19,4 @@ balanced.a
 include
 *.xccheckout
 *.zip
+build*

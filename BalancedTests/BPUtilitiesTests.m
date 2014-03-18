@@ -14,14 +14,6 @@
     STAssertTrue([BPUtilities getTimezoneOffset] >= -12 && [BPUtilities getTimezoneOffset] <= 14, @"Timezone offset should be within acceptable range");
 }
 
-- (void)testGetMACAddress {
-    STAssertNotNil([BPUtilities getMACAddress], @"MAC address should not be nil");
-}
-
-- (void)testGetIPAddress {
-    STAssertNotNil([BPUtilities getIPAddress], @"IP address should not be nil");
-}
-
 - (void)testUserAgentString {
     STAssertNotNil([BPUtilities userAgentString], @"User-Agent should not be nil");
 }
