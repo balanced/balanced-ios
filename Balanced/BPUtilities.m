@@ -43,7 +43,7 @@
 }
 
 + (NSString *)userAgentString {
-    return [NSString stringWithFormat:@"Balanced iOS %@",
+    return [NSString stringWithFormat:@"balanced-ios/%@",
             BALANCED_IOS_VERSION];
 }
 
