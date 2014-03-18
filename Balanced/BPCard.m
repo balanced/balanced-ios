@@ -45,7 +45,7 @@
     BOOL odd = true;
     int total = 0;
     
-    for (int i = self.number.length - 1; i >= 0; i--) {
+    for (int i = (int)self.number.length - 1; i >= 0; i--) {
         int value = [[self.number substringWithRange:NSMakeRange(i, 1)] intValue];
         total += (odd = !odd) ? 2 * value - (value > 4 ? 9 : 0) : value;
     }
@@ -104,7 +104,7 @@
 
 - (BPCardType)getType
 {
-    int digits = [[self.number substringWithRange:NSMakeRange(0, 2)] integerValue];
+    int digits = [[self.number substringWithRange:NSMakeRange(0, 2)] intValue];
     
     if (digits >= 40 && digits <= 49) {
         return BPCardTypeVisa;

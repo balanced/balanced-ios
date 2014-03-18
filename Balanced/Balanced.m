@@ -57,8 +57,8 @@
     if (card.valid) {
         NSMutableDictionary *payload = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                         card.number, @"number",
-                                        [NSString stringWithFormat:@"%i",card.expirationMonth], @"expiration_month",
-                                        [NSString stringWithFormat:@"%i",card.expirationYear], @"expiration_year",
+                                        [NSString stringWithFormat:@"%i",(int)card.expirationMonth], @"expiration_month",
+                                        [NSString stringWithFormat:@"%i", (int)card.expirationYear], @"expiration_year",
                                         [BPUtilities capabilities], @"meta",
                                         nil];
 
@@ -161,7 +161,7 @@
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
             NSMutableDictionary *tokenResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
-            [tokenResponse setObject:[NSString stringWithFormat:@"%d", [response statusCode]] forKey:@"status"];
+            [tokenResponse setObject:[NSString stringWithFormat:@"%i", (int)[response statusCode]] forKey:@"status"];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
                     successBlock(tokenResponse);

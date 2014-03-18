@@ -48,7 +48,7 @@
 }
 
 + (int)getTimezoneOffset {
-    return [[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]] / 3600;
+    return (int)[[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]] / 3600;
 }
 
 + (NSString *)getMACAddress {
