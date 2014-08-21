@@ -33,8 +33,8 @@
     }
 
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"201"],
-                    [NSString stringWithFormat:@"Status should be 201 but was %@", [response valueForKey:@"status"]]);
+    STAssertTrue([[response valueForKey:@"status_code"] isEqualToString:@"201"],
+                    [NSString stringWithFormat:@"Status should be 201 but was %@", [response valueForKey:@"status_code"]]);
     STAssertNotNil([[response valueForKey:@"cards"][0] valueForKey:@"href"], @"Card href should not be nil");
 }
 
@@ -59,7 +59,7 @@
     }
 
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"201"], [NSString stringWithFormat:@"Status should be 201 but was %@", [response valueForKey:@"status"]]);
+    STAssertTrue([[response valueForKey:@"status_code"] isEqualToString:@"201"], [NSString stringWithFormat:@"Status should be 201 but was %@", [response valueForKey:@"status_code"]]);
     STAssertNotNil([[response valueForKey:@"cards"][0] valueForKey:@"href"], @"Card href should not be nil");
 }
 
@@ -93,7 +93,7 @@
     
     STAssertNil(tokenizeError, @"response should not have error");
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"201"], @"Status should be 201");
+    STAssertTrue([[response valueForKey:@"status_code"] isEqualToString:@"201"], @"Status should be 201");
     STAssertNotNil([[response valueForKey:@"cards"][0] valueForKey:@"href"], @"Card href should not be nil");
 }
 
@@ -125,7 +125,7 @@
     
     STAssertNil(tokenizeError, @"response should not have error");
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"201"], @"Status should be 201");
+    STAssertTrue([[response valueForKey:@"status_code"] isEqualToString:@"201"], @"Status should be 201");
     STAssertNotNil([[response valueForKey:@"bank_accounts"][0] valueForKey:@"href"], @"Bank account href should not be nil");
 }
 
@@ -156,7 +156,7 @@
     
     STAssertNil(tokenizeError, @"response should not have error");
     STAssertNotNil(response, @"Response should not be nil");
-    STAssertTrue([[response valueForKey:@"status"] isEqualToString:@"201"], @"Status should be 201");
+    STAssertTrue([[response valueForKey:@"status_code"] isEqualToString:@"201"], @"Status should be 201");
     STAssertNotNil([[response valueForKey:@"bank_accounts"][0] valueForKey:@"href"], @"Bank account href should not be nil");
     STAssertNotNil(response, @"Response should not be nil");
 }

@@ -161,7 +161,7 @@
         responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&tokenizeError];
         if (tokenizeError == nil) {
             NSMutableDictionary *tokenResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&tokenizeError];
-            [tokenResponse setObject:[NSString stringWithFormat:@"%i", (int)[response statusCode]] forKey:@"status"];
+            [tokenResponse setObject:[NSString stringWithFormat:@"%i", (int)[response statusCode]] forKey:@"status_code"];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (tokenizeError == nil) {
                     successBlock(tokenResponse);
