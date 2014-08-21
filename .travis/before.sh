@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
 
-brew update
-brew upgrade xctool
+# disabled until xctool possibly becomes outdated again
+#brew update
+#brew upgrade xctool
