@@ -4,7 +4,7 @@
 
 iOS library for tokenizing credit card and bank accounts with Balanced Payments.
 
-Current version : 1.0
+Current version : 1.0.1
 
 **v1.x requires Balanced API 1.1. Use [v0.x](https://github.com/balanced/balanced-ios/tree/rev0) for Balanced API 1.0.**
 
@@ -21,7 +21,7 @@ It's also recommended to review the [best practices](https://docs.balancedpaymen
 
 ## Installation
 
-- [Download the pre-built library](https://github.com/balanced/balanced-ios/releases/1.0).
+- [Download the pre-built library](https://github.com/balanced/balanced-ios/releases/1.0.1).
 - Add balanced.a to your project and to Build Phases -> Link Binary With Libraries.
 - Add CoreTelephony.framework to Build Phases -> Link Binary With Libraries.
 
