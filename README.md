@@ -105,7 +105,7 @@ Balanced *balanced = [[Balanced alloc] init];
         }
     ],
     "links": {},
-    "status_code": 201
+    "status": 201
 }
 ```
 
@@ -156,7 +156,7 @@ Balanced *balanced = [[Balanced alloc] init];
         }
     ],
     "links": {},
-    "status_code": 201
+    "status": 201
 }
 ```
 
